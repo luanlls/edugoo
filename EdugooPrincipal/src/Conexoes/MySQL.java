@@ -13,9 +13,9 @@ public class MySQL {
     private ResultSet resultSet;
     
     private String servidor = "localhost:3306";
-    private String nomeDoBanco = "pousar";
-    private String usuario = "root";
-    private String senha = "Henrique123";
+    private String nomeDoBanco = "edugoo";
+    private String usuario = "edugoo";
+    private String senha = "edugoo123@";
     
     //Construtor    
     public MySQL(){
@@ -64,6 +64,20 @@ public class MySQL {
         } catch (Exception e) {
             System.out.println("Conexão não realizada - ERRO: " + e.getMessage());
         }
+    }
+    
+    public Connection conectaBD(){
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://" + servidor + "/" + nomeDoBanco, usuario, senha);
+            
+            if(conn != null){
+                System.out.println("Conexão efetuada com sucesso! " + "ID: " + conn);
+            }            
+            
+        } catch (Exception e) {
+            System.out.println("Conexão não realizada - ERRO: " + e.getMessage());
+        }
+        return conn;
     }
     
     public boolean fechaBanco(){
