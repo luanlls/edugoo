@@ -1,0 +1,9 @@
+use edugoo;
+
+create table usuarios(
+	usuario_id			int				auto_increment		primary key,
+    usuario_nome		varchar(45),
+    usuario_senha		varchar(45)
+);
+
+insert into usuarios (usuario_nome, usuario_senha) values ('admin', 'admin123');

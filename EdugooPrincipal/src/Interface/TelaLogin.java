@@ -3,17 +3,21 @@ package Interface;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
+import Objetos.ObjUsuario;
+import Processamento.UsuarioProc;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class TelaLogin extends javax.swing.JFrame {
+
     MySQL conectar = new MySQL();
 
     private Connection conn;
         public TelaLogin() {
-        initComponents(); 
+        initComponents();
         jPanel1.setFocusable(true);
-    }            
-   
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -23,9 +27,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        campousuario = new javax.swing.JTextField();
-        camposenha = new javax.swing.JPasswordField();
-        bntLogin = new javax.swing.JButton();
+        campoUsuario = new javax.swing.JTextField();
+        campoSenha = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -59,40 +63,40 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/cadeado1.png"))); // NOI18N
 
-        campousuario.setBackground(new java.awt.Color(237, 237, 237));
-        campousuario.setFont(new java.awt.Font("Gadugi", 2, 24)); // NOI18N
-        campousuario.setForeground(new java.awt.Color(204, 204, 204));
-        campousuario.setText("Usuário");
-        campousuario.setToolTipText("");
-        campousuario.setBorder(null);
-        campousuario.setCaretColor(new java.awt.Color(102, 153, 255));
-        campousuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        campousuario.setName(""); // NOI18N
-        campousuario.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoUsuario.setBackground(new java.awt.Color(237, 237, 237));
+        campoUsuario.setFont(new java.awt.Font("Gadugi", 2, 24)); // NOI18N
+        campoUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        campoUsuario.setText("Usuário");
+        campoUsuario.setToolTipText("");
+        campoUsuario.setBorder(null);
+        campoUsuario.setCaretColor(new java.awt.Color(102, 153, 255));
+        campoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        campoUsuario.setName(""); // NOI18N
+        campoUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                campousuarioFocusGained(evt);
+                campoUsuarioFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                campousuarioFocusLost(evt);
+                campoUsuarioFocusLost(evt);
             }
         });
-        campousuario.addActionListener(new java.awt.event.ActionListener() {
+        campoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campousuarioActionPerformed(evt);
+                campoUsuarioActionPerformed(evt);
             }
         });
 
-        camposenha.setBackground(new java.awt.Color(237, 237, 237));
-        camposenha.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        camposenha.setForeground(new java.awt.Color(204, 204, 204));
-        camposenha.setText("**********");
-        camposenha.setBorder(null);
-        camposenha.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoSenha.setBackground(new java.awt.Color(237, 237, 237));
+        campoSenha.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
+        campoSenha.setForeground(new java.awt.Color(204, 204, 204));
+        campoSenha.setText("**********");
+        campoSenha.setBorder(null);
+        campoSenha.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                camposenhaFocusGained(evt);
+                campoSenhaFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                camposenhaFocusLost(evt);
+                campoSenhaFocusLost(evt);
             }
         });
 
@@ -107,8 +111,8 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(camposenha, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(314, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -117,27 +121,27 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(camposenha, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 640, -1));
 
-        bntLogin.setBackground(new java.awt.Color(255, 153, 0));
-        bntLogin.setFont(new java.awt.Font("Fredoka One", 0, 20)); // NOI18N
-        bntLogin.setForeground(new java.awt.Color(255, 255, 255));
-        bntLogin.setText("ENTRAR");
-        bntLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        bntLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(255, 153, 0));
+        btnLogin.setFont(new java.awt.Font("Fredoka One", 0, 20)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("ENTRAR");
+        btnLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntLoginActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(bntLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 560, 220, 52));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 560, 220, 52));
 
         btnNovo.setBackground(new java.awt.Color(0, 0, 102));
         btnNovo.setFont(new java.awt.Font("Fredoka One", 0, 20)); // NOI18N
@@ -180,43 +184,41 @@ public class TelaLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bntLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntLoginActionPerformed
-        this.conectar.conectaBanco();
-        
-        
-    }//GEN-LAST:event_bntLoginActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        Logar();
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void campousuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campousuarioActionPerformed
+    private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
 
-    }//GEN-LAST:event_campousuarioActionPerformed
+    }//GEN-LAST:event_campoUsuarioActionPerformed
 
-    private void campousuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campousuarioFocusLost
-        if (campousuario.getText().equals("")){
-            campousuario.setText("Usuário");
-            campousuario.setForeground(new Color(204,204,204));
+    private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusLost
+        if (campoUsuario.getText().equals("")) {
+            campoUsuario.setText("Usuário");
+            campoUsuario.setForeground(new Color(204, 204, 204));
         }
-    }//GEN-LAST:event_campousuarioFocusLost
+    }//GEN-LAST:event_campoUsuarioFocusLost
 
-    private void campousuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campousuarioFocusGained
-        if (campousuario.getText().equals("Usuário")){
-            campousuario.setText("");
-            campousuario.setForeground(new Color(204,204,204));
+    private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusGained
+        if (campoUsuario.getText().equals("Usuário")) {
+            campoUsuario.setText("");
+            campoUsuario.setForeground(new Color(204, 204, 204));
         }
-    }//GEN-LAST:event_campousuarioFocusGained
+    }//GEN-LAST:event_campoUsuarioFocusGained
 
-    private void camposenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_camposenhaFocusLost
-        if (camposenha.getText().equals("")){
-            camposenha.setText("**********");
-            camposenha.setForeground(new Color(204,204,204));
+    private void campoSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusLost
+        if (campoSenha.getText().equals("")) {
+            campoSenha.setText("**********");
+            campoSenha.setForeground(new Color(204, 204, 204));
         }
-    }//GEN-LAST:event_camposenhaFocusLost
+    }//GEN-LAST:event_campoSenhaFocusLost
 
-    private void camposenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_camposenhaFocusGained
-        if (camposenha.getText().equals("**********")){
-            camposenha.setText("");
-            camposenha.setForeground(new Color(204,204,204));
+    private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
+        if (campoSenha.getText().equals("**********")) {
+            campoSenha.setText("");
+            campoSenha.setForeground(new Color(204, 204, 204));
         }
-    }//GEN-LAST:event_camposenhaFocusGained
+    }//GEN-LAST:event_campoSenhaFocusGained
 
     /**
      * @param args the command line arguments
@@ -254,7 +256,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new TelaLogin().setVisible(true);
             }
@@ -262,10 +264,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntLogin;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JPasswordField camposenha;
-    private javax.swing.JTextField campousuario;
+    private javax.swing.JPasswordField campoSenha;
+    private javax.swing.JTextField campoUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -276,4 +278,34 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
+
+    private void Logar() {
+        try {
+            String nome_usuario, senha_usuario;
+
+            nome_usuario = campoUsuario.getText();
+            senha_usuario = campoSenha.getText();
+
+            ObjUsuario objUsuario = new ObjUsuario();
+            objUsuario.setUsuarioNome(nome_usuario);
+            objUsuario.setUsuarioSenha(senha_usuario);
+
+            UsuarioProc usuarioProc = new UsuarioProc();
+            ResultSet rsUsuarioProc = usuarioProc.autenticacaoUsuario(objUsuario);
+
+            //next (se tiver pelo menos 1 linha)
+            if (rsUsuarioProc.next()) {
+                //Tela que quer abrir
+                TelaMenu telamenu = new TelaMenu();
+                telamenu.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorreto!!");
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Interface Login: " + erro);
+        }
+
+    }
 }
