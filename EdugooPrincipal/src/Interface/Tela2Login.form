@@ -93,8 +93,8 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="camposenha" min="-2" pref="223" max="-2" attributes="0"/>
-                          <Component id="campousuario" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="campoSenha" min="-2" pref="223" max="-2" attributes="0"/>
+                          <Component id="campoUsuario" min="-2" pref="223" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="314" max="32767" attributes="0"/>
                   </Group>
@@ -106,12 +106,12 @@
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLabel4" min="-2" pref="52" max="-2" attributes="0"/>
-                          <Component id="campousuario" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="campoUsuario" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="camposenha" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="campoSenha" min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="59" max="32767" attributes="0"/>
                   </Group>
@@ -133,7 +133,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="campousuario">
+            <Component class="javax.swing.JTextField" name="campoUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="ed" red="ed" type="rgb"/>
@@ -158,12 +158,12 @@
                 <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campousuarioFocusGained"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campousuarioFocusLost"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campousuarioActionPerformed"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoUsuarioFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoUsuarioFocusLost"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoUsuarioActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="camposenha">
+            <Component class="javax.swing.JPasswordField" name="campoSenha">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ed" green="ed" red="ed" type="rgb"/>
@@ -180,13 +180,13 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="camposenhaFocusGained"/>
-                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="camposenhaFocusLost"/>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoSenhaFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoSenhaFocusLost"/>
               </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="bntLogin">
+        <Component class="javax.swing.JButton" name="btnLogin">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="99" red="ff" type="rgb"/>
@@ -205,7 +205,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntLoginActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoginActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
