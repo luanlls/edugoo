@@ -6,12 +6,12 @@ import Objetos.Clientes;
 import com.sun.glass.events.KeyEvent;
 import java.text.SimpleDateFormat;
 
-public class TelaCadastro extends javax.swing.JFrame {
+public class Tela6Cadastro extends javax.swing.JFrame {
     
     MySQL conectar = new MySQL();
     Clientes novoCliente = new Clientes();
     
-    public TelaCadastro() {
+    public Tela6Cadastro() {
         initComponents();
     } 
 
@@ -79,7 +79,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         } finally{            
             this.conectar.fechaBanco();
             JOptionPane.showMessageDialog(null, "Obrigado por realizar seu cadastro!");
-            TelaMenu tela = new TelaMenu();
+            Tela4Menu tela = new Tela4Menu();
             tela.setVisible(true);
             dispose();
         }
@@ -308,7 +308,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltar1ActionPerformed
-        TelaMenu tela = new TelaMenu();
+        Tela4Menu tela = new Tela4Menu();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltar1ActionPerformed
@@ -328,7 +328,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumCasaKeyTyped
 
     private void btnCancelar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar_ClienteActionPerformed
-        TelaMenu tela = new TelaMenu();
+        Tela4Menu tela = new Tela4Menu();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelar_ClienteActionPerformed
@@ -350,14 +350,42 @@ public class TelaCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela6Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela6Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela6Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela6Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -366,7 +394,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastro().setVisible(true);
+                new Tela6Cadastro().setVisible(true);
             }
         });
     }

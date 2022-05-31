@@ -2,13 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/ProjetoEdugoo/EdugooPrincipal/src/Interface/TelaLogin.java</file>
-            <file>file:/C:/Users/User/Documents/NetBeansProjects/ProjetoEdugoo/EdugooPrincipal/src/Main/Main.java</file>
+            <file>file:/C:/Users/rebec/Documents/Edugoo/EdugooPrincipal/src/Interface/Tela7Consultar.java</file>
+            <file>file:/C:/Users/rebec/Documents/Edugoo/EdugooPrincipal/src/Interface/Tela9Boletim.java</file>
+            <file>file:/C:/Users/rebec/Documents/Edugoo/EdugooPrincipal/src/Interface/Tela4Menu.java</file>
         </group>
->>>>>>> ce443f9e6aa944cd0f634d4422f45ac49daf415f
     </open-files>
 </project-private>

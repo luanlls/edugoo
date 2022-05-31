@@ -4,12 +4,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class TelaSplash extends javax.swing.JFrame {
+public class Tela5Splash extends javax.swing.JFrame {
 
-    public TelaSplash() {
+    public Tela5Splash() {
         initComponents();
 
-        TelaPrincipal JFSplash = new TelaPrincipal();
+        Tela4Menu JFSplash = new Tela4Menu();
 
         new Thread() {
             public void run() {
@@ -23,7 +23,7 @@ public class TelaSplash extends javax.swing.JFrame {
                             dispose();
                         }
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(TelaSplash.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(Tela5Splash.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -89,7 +89,7 @@ public class TelaSplash extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaSplash().setVisible(true);
+                new Tela5Splash().setVisible(true);
             }
         });
     }
