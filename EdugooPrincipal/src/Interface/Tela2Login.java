@@ -146,6 +146,11 @@ public class Tela2Login extends javax.swing.JFrame {
         btnNovo.setFont(new java.awt.Font("Fredoka One", 0, 20)); // NOI18N
         btnNovo.setForeground(new java.awt.Color(255, 255, 255));
         btnNovo.setText("NOVO");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 560, 220, 50));
 
         jPanel2.setBackground(new java.awt.Color(121, 38, 180));
@@ -218,6 +223,12 @@ public class Tela2Login extends javax.swing.JFrame {
             campoSenha.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_campoSenhaFocusGained
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        Tela3CadastroUsuario tela = new Tela3CadastroUsuario();
+        tela.setVisible(true);
+        dispose(); 
+    }//GEN-LAST:event_btnNovoActionPerformed
 
     /**
      * @param args the command line arguments

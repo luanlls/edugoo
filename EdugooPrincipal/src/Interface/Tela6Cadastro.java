@@ -188,7 +188,7 @@ public class Tela6Cadastro extends javax.swing.JFrame {
                 btnVoltar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVoltar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 70, 70));
+        jPanel1.add(btnVoltar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 90, 80));
 
         jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel11.setText("Endereço");

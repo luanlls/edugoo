@@ -2,18 +2,18 @@ package Interface;
 
 import Conexoes.MySQL;
 import javax.swing.JOptionPane;
-import Objetos.Usuarios;
+import Objetos.ObjUsuario;
 
 public class Tela3CadastroUsuario extends javax.swing.JFrame {
     
     MySQL conectar = new MySQL();
-    Usuarios novoUsuario = new Usuarios();
+    ObjUsuario novoUsuario = new ObjUsuario();
     
     public Tela3CadastroUsuario() {
         initComponents();
     } 
 
-    private void CadastraUsuario(Usuarios novoUsuario) {
+    private void CadastraUsuario(ObjUsuario novoUsuario) {
         this.conectar.conectaBanco();
         
         novoUsuario.setNome(txtNome.getText());
