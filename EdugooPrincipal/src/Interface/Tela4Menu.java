@@ -25,8 +25,6 @@ public class Tela4Menu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnRel = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        btnBol = new javax.swing.JButton();
         btnAge = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnAjuda = new javax.swing.JButton();
@@ -68,7 +66,7 @@ public class Tela4Menu extends javax.swing.JFrame {
                 btnCadFuncActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCadFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 300, 90));
+        jPanel1.add(btnCadFunc, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 310, 90));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/consult.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, -1, -1));
@@ -83,26 +81,19 @@ public class Tela4Menu extends javax.swing.JFrame {
         jPanel1.add(btnConsul, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 120, 300, 90));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/relat.png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/agenda.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 290, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, -1, -1));
 
         btnRel.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         btnRel.setText("Emitir Relatórios");
-        jPanel1.add(btnRel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, 250, 90));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/bolet.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, -1, -1));
-
-        btnBol.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
-        btnBol.setText("Boletim");
-        btnBol.addActionListener(new java.awt.event.ActionListener() {
+        btnRel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBolActionPerformed(evt);
+                btnRelActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBol, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, 250, 90));
+        jPanel1.add(btnRel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 320, 90));
 
         btnAge.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         btnAge.setText("Agenda do Aluno");
@@ -111,10 +102,10 @@ public class Tela4Menu extends javax.swing.JFrame {
                 btnAgeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 250, 90));
+        jPanel1.add(btnAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 300, 90));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ajud.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 290, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 280, -1, -1));
 
         btnAjuda.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         btnAjuda.setText("Ajuda");
@@ -123,7 +114,7 @@ public class Tela4Menu extends javax.swing.JFrame {
                 btnAjudaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 380, 250, 90));
+        jPanel1.add(btnAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 380, 300, 90));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EDUGOO2.png"))); // NOI18N
 
@@ -216,11 +207,11 @@ public class Tela4Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnAgeActionPerformed
 
-    private void btnBolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBolActionPerformed
-        Tela9Boletim tela = new Tela9Boletim();
+    private void btnRelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRelActionPerformed
+        TelaRelatorios tela = new TelaRelatorios();
         tela.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnBolActionPerformed
+    }//GEN-LAST:event_btnRelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,7 +252,6 @@ public class Tela4Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAge;
     private javax.swing.JButton btnAjuda;
-    private javax.swing.JButton btnBol;
     private javax.swing.JButton btnCadAlun;
     private javax.swing.JButton btnCadFunc;
     private javax.swing.JButton btnConsul;
@@ -272,7 +262,6 @@ public class Tela4Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
