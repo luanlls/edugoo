@@ -1,9 +1,14 @@
 use edugoo;
 
+drop table if exists usuarios;
 create table usuarios(
-	usuario_id			int				auto_increment		primary key,
-    usuario_nome		varchar(45),
-    usuario_senha		varchar(45)
+	usuario_id				int				auto_increment		primary key,
+    usuario_nome			varchar(30),
+    usuario_username		varchar(30),
+    usuario_senha			varchar(30),
+    usuario_tipo			varchar(20)
 );
 
-insert into usuarios (usuario_nome, usuario_senha) values ('admin', 'admin123');
+insert into usuarios (usuario_nome, usuario_username, usuario_senha, usuario_tipo) values ('Ana','admin2', 'admin123', 'Administrador');
+insert into usuarios (usuario_nome, usuario_username, usuario_senha, usuario_tipo) values ('Luan','admin3', 'admin123', 'Professor');
+insert into usuarios (usuario_nome, usuario_username, usuario_senha, usuario_tipo) values ('Rebeca','admin4', 'admin123', 'Responsavel');
