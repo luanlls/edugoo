@@ -17,10 +17,10 @@ public class UsuarioProc {
         conn = new MySQL().conectaBD();
         
         try {
-            String sql = "select * from usuarios where usuario_nome = ? and usuario_senha = ?";
+            String sql = "select * from usuarios where usuario_username = ? and usuario_senha = ? and usuario_tipo = ?";
             
             PreparedStatement psmt = conn.prepareStatement(sql);
-            psmt.setString(1, objUsuario.getUsuarioNome());
+            psmt.setString(1, objUsuario.getUsuarioUserName());
             psmt.setString(2, objUsuario.getUsuarioSenha());
             
             ResultSet rs = psmt.executeQuery();

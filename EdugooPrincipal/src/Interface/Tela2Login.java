@@ -12,12 +12,15 @@ import java.sql.SQLException;
 public class Tela2Login extends javax.swing.JFrame {
 
     MySQL conectar = new MySQL();
+    ObjUsuario objUsuario = new ObjUsuario();
 
     private Connection conn;
-        public Tela2Login() {
+
+    public Tela2Login() {
         initComponents();
         jPanel1.setFocusable(true);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -189,13 +192,14 @@ public class Tela2Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Logar();
+        Logar(BuscarUsuario(objUsuario));
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    /*
     private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
 
     }//GEN-LAST:event_campoUsuarioActionPerformed
-
+*/
     private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusLost
         if (campoUsuario.getText().equals("")) {
             campoUsuario.setText("Usuário");
@@ -227,7 +231,7 @@ public class Tela2Login extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         Tela3CadastroUsuario tela = new Tela3CadastroUsuario();
         tela.setVisible(true);
-        dispose(); 
+        dispose();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     /**
@@ -311,7 +315,7 @@ public class Tela2Login extends javax.swing.JFrame {
             UsuarioProc usuarioProc = new UsuarioProc();
             ResultSet rsUsuarioProc = usuarioProc.autenticacaoUsuario(objUsuario);
 
-            //next (se tiver pelo menos 1 linha)
+            //rsUsuarioProc == com.mysql.cj.jdbc.result.ResultSetImpl@60d747e3
             if (rsUsuarioProc.next()) {
                 //Tela que quer abrir
                 Tela4Menu telamenu = new Tela4Menu();
@@ -325,5 +329,88 @@ public class Tela2Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Interface Login: " + erro);
         }
 
+    }
+
+    private ObjUsuario BuscarUsuario(ObjUsuario objUsuario) {
+
+        this.conectar.conectaBanco();
+        
+        String username = campoUsuario.getText();
+        String senha = campoSenha.getText();
+
+        try {
+            this.conectar.executarSQL(
+                    "SELECT "
+                    + "usuario_id,"
+                    + "usuario_nome,"
+                    + "usuario_username,"
+                    + "usuario_senha,"
+                    + "usuario_tipo"
+                    + " FROM"
+                    + " usuarios"
+                    + " WHERE"
+                    + " usuario_username = '" + username + "' and usuario_senha = '" +senha+ "'"
+                    + ";"
+            );
+
+            while (this.conectar.getResultSet().next()) {
+
+                objUsuario.setUsuarioId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
+                objUsuario.setUsuarioNome(this.conectar.getResultSet().getString(2));
+                objUsuario.setUsuarioUserName(this.conectar.getResultSet().getString(3));
+                objUsuario.setUsuarioSenha(this.conectar.getResultSet().getString(4));
+                objUsuario.setUsuarioTipo(this.conectar.getResultSet().getString(5));
+
+            }
+            
+            if (objUsuario.getUsuarioUserName().equals("")) {
+//                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");
+                objUsuario = null;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao consultar usuario " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao buscar Usuario");
+            
+            objUsuario = null;
+        } finally {
+            this.conectar.fechaBanco();
+        }
+        return objUsuario;
+    }
+    
+    private void Logar(ObjUsuario objUsuario){
+        
+        String tipo = "";
+        
+        if (objUsuario == null) {
+            JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");    
+        } else {
+            tipo = objUsuario.getUsuarioTipo();
+            
+            switch(tipo){
+                case "Administrador":
+                    Tela4Menu telamenu = new Tela4Menu();
+                    telamenu.setVisible(true);
+                    System.out.println("Entrou no menu de Administrador");
+                    dispose();
+                    break;
+                case "Professor":
+                    Tela4MenuProfessor telamenuProf = new Tela4MenuProfessor();
+                    telamenuProf.setVisible(true);
+                    System.out.println("Entrou no menu de professor");
+                    dispose();
+                    break;
+                case "Responsavel":
+                    Tela4MenuResponsavel telamenuResp = new Tela4MenuResponsavel();
+                    telamenuResp.setVisible(true);
+                    System.out.println("Entrou no menu de Responsavel");
+                    dispose();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Algo deu errado: Switch, tela Login, Função Logar(ObjUsuario)");
+                    break;
+            }
+        }
     }
 }

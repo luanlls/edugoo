@@ -2,9 +2,11 @@ package Objetos;
 
 public class ObjUsuario {
     
-    private int usuarioId;
-    private String usuarioNome;
-    private String usuarioSenha;
+    private int usuarioId = 0;
+    private String usuarioNome = "";
+    private String usuarioUserName = "";
+    private String usuarioSenha = "";
+    private String usuarioTipo = "";
 
     //GET AND SETTER
     public int getUsuarioId() {
@@ -23,6 +25,14 @@ public class ObjUsuario {
         this.usuarioNome = usuarioNome;
     }
 
+    public String getUsuarioUserName() {
+        return usuarioUserName;
+    }
+
+    public void setUsuarioUserName(String usuarioUserName) {
+        this.usuarioUserName = usuarioUserName;
+    }
+
     public String getUsuarioSenha() {
         return usuarioSenha;
     }
@@ -30,5 +40,13 @@ public class ObjUsuario {
     public void setUsuarioSenha(String usuarioSenha) {
         this.usuarioSenha = usuarioSenha;
     }
-    
+
+    public String getUsuarioTipo() {
+        return usuarioTipo;
+    }
+
+    public void setUsuarioTipo(String usuarioTipo) {
+        this.usuarioTipo = usuarioTipo;
+    }
+
 }
