@@ -6,9 +6,27 @@ create table usuarios(
     usuario_nome			varchar(30),
     usuario_username		varchar(30),
     usuario_senha			varchar(30),
-    usuario_tipo			varchar(20)
+    usuario_cpf				varchar(30),
+    usuario_tipo			varchar(20)		default 'Responsavel'
 );
 
-insert into usuarios (usuario_nome, usuario_username, usuario_senha, usuario_tipo) values ('Ana','admin2', 'admin123', 'Administrador');
-insert into usuarios (usuario_nome, usuario_username, usuario_senha, usuario_tipo) values ('Luan','admin3', 'admin123', 'Professor');
-insert into usuarios (usuario_nome, usuario_username, usuario_senha, usuario_tipo) values ('Rebeca','admin4', 'admin123', 'Responsavel');
+drop table if exists funcionarios;
+create table funcionarios(
+	funcionario_id			int				auto_increment	primary key,
+    funcionario_categoria	varchar(30)		not null,
+    funcionario_periodo		varchar(30)		not null,
+    funcionario_fase		varchar(30)		not null,
+    funcionario_nome		varchar(30)		not null,
+    funcionario_sexo		varchar(15),
+    funcionario_datan		date			not null,
+    funcionario_cpf			varchar(30)		not null,
+    funcionario_email		varchar(40),
+    funcionario_telefone	varchar(30),
+    funcionario_endereco	varchar(40),
+    funcionario_compl		varchar(30),
+    funcionario_no			varchar(10),
+    funcionario_bairro		varchar(30),
+    funcionario_cidade		varchar(30),
+    funcionario_cep			varchar(20),
+    funcionario_estado		varchar(10)
+);
