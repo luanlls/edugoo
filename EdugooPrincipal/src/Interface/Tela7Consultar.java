@@ -3,18 +3,18 @@ package Interface;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
-import Objetos.Clientes;
+import Objetos.ObjFuncionario;
 
 public class Tela7Consultar extends javax.swing.JFrame {
     
     MySQL conectar = new MySQL();
-    Clientes novoCliente = new Clientes();
+    ObjFuncionario novoCliente = new ObjFuncionario();
 
     public Tela7Consultar() {
         initComponents();
     }
 
-    private void BuscarCliente(Clientes novoCliente){
+    private void BuscarCliente(ObjFuncionario novoCliente){
         this.conectar.conectaBanco();
         
         String consultaNome = this.ConsultaNome.getText();
