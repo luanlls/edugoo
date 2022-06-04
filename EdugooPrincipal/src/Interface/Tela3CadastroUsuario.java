@@ -4,49 +4,14 @@ import Conexoes.MySQL;
 import javax.swing.JOptionPane;
 import Objetos.ObjUsuario;
 
+
 public class Tela3CadastroUsuario extends javax.swing.JFrame {
-    
+
     MySQL conectar = new MySQL();
     ObjUsuario novoUsuario = new ObjUsuario();
-    
+
     public Tela3CadastroUsuario() {
         initComponents();
-    } 
-
-    private void CadastraUsuario(ObjUsuario novoUsuario) {
-        this.conectar.conectaBanco();
-        
-        novoUsuario.setNome(txtNome.getText());
-        novoUsuario.setUsuario(txtUsuario.getText());
-        novoUsuario.setSenha(txtSenha.getText());
-        novoUsuario.setEmail(txtEmail.getText());
-        
-        try {
-                        
-            this.conectar.insertSQL("INSERT INTO cadastro_usuarios ("
-                    + "user_nome,"
-                    + "user_usuario,"
-                    + "user_senha,"
-                    + "user_email"
-                + ") VALUES ("
-                    + "'" + novoUsuario.getNome() + "',"
-                    + "'" + novoUsuario.getUsuario() + "',"
-                    + "'" + novoUsuario.getSenha() + "',"
-                    + "'" + novoUsuario.getEmail() + "'"
-                + ");");
-            
-        } catch (Exception e) {
-            
-            System.out.println("Erro ao cadastrar usuário " +  e.getMessage());
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
-            
-        } finally{            
-            this.conectar.fechaBanco();
-            JOptionPane.showMessageDialog(null, "Obrigado por realizar seu cadastro!");
-            Tela4Menu tela = new Tela4Menu();
-            tela.setVisible(true);
-            dispose();
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -61,11 +26,11 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
-        txtEmail = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JFormattedTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -104,12 +69,6 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(231, 228, 228));
 
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-
         jLabel14.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel14.setText("NOME");
 
@@ -120,7 +79,13 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         jLabel5.setText("SENHA");
 
         jLabel11.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel11.setText("E-MAIL");
+        jLabel11.setText("CPF");
+
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -128,7 +93,8 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel5)
                     .addComponent(jLabel2)
@@ -136,8 +102,7 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                         .addComponent(txtUsuario)
-                        .addComponent(txtSenha)
-                        .addComponent(txtEmail)))
+                        .addComponent(txtSenha)))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -158,7 +123,7 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
         );
 
@@ -182,7 +147,7 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel1.getAccessibleContext().setAccessibleName("");
@@ -196,9 +161,6 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnSalvar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_ClienteActionPerformed
         CadastraUsuario(novoUsuario);
@@ -282,13 +244,55 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txtEmail;
+    private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void novoUsuario(String text) {
+    /*private void novoUsuario(String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
+    private void CadastraUsuario(ObjUsuario novoUsuario) {
+
+        if (txtNome.getText().equals("") || txtUsuario.getText().equals("")
+                || txtSenha.getText().equals("") || txtCPF.getText().equals("   .   .   -  ")) {
+
+            JOptionPane.showMessageDialog(null, "Todos os Campos sao Obrigatorios!!");
+        } else {
+            this.conectar.conectaBanco();
+
+            novoUsuario.setUsuarioNome(txtNome.getText());
+            novoUsuario.setUsuarioUserName(txtUsuario.getText());
+            novoUsuario.setUsuarioSenha(txtSenha.getText());
+            novoUsuario.setUsuarioCpf(txtCPF.getText());
+
+            try {
+
+                this.conectar.insertSQL("INSERT INTO usuarios ("
+                        + "usuario_nome,"
+                        + "usuario_username,"
+                        + "usuario_senha,"
+                        + "usuario_cpf"
+                        + ") VALUES ("
+                        + "'" + novoUsuario.getUsuarioNome() + "',"
+                        + "'" + novoUsuario.getUsuarioUserName() + "',"
+                        + "'" + novoUsuario.getUsuarioSenha() + "',"
+                        + "'" + novoUsuario.getUsuarioCpf() + "'"
+                        + ");");
+
+            } catch (Exception e) {
+
+                System.out.println("Erro ao cadastrar usuário " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
+
+            } finally {
+                this.conectar.fechaBanco();
+                JOptionPane.showMessageDialog(null, "Obrigado por realizar seu cadastro!");
+                Tela4MenuResponsavel tela = new Tela4MenuResponsavel();
+                tela.setVisible(true);
+                dispose();
+            }
+        }
     }
 }

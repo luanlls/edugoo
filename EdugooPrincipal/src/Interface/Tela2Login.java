@@ -4,10 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
 import Objetos.ObjUsuario;
-import Processamento.UsuarioProc;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Tela2Login extends javax.swing.JFrame {
 
@@ -80,11 +77,6 @@ public class Tela2Login extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 campoUsuarioFocusLost(evt);
-            }
-        });
-        campoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoUsuarioActionPerformed(evt);
             }
         });
 
@@ -195,11 +187,6 @@ public class Tela2Login extends javax.swing.JFrame {
         Logar(BuscarUsuario(objUsuario));
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    /*
-    private void campoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoUsuarioActionPerformed
-
-    }//GEN-LAST:event_campoUsuarioActionPerformed
-*/
     private void campoUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusLost
         if (campoUsuario.getText().equals("")) {
             campoUsuario.setText("Usuário");
@@ -301,36 +288,6 @@ public class Tela2Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables
 
-    private void Logar() {
-        try {
-            String nome_usuario, senha_usuario;
-
-            nome_usuario = campoUsuario.getText();
-            senha_usuario = campoSenha.getText();
-
-            ObjUsuario objUsuario = new ObjUsuario();
-            objUsuario.setUsuarioNome(nome_usuario);
-            objUsuario.setUsuarioSenha(senha_usuario);
-
-            UsuarioProc usuarioProc = new UsuarioProc();
-            ResultSet rsUsuarioProc = usuarioProc.autenticacaoUsuario(objUsuario);
-
-            //rsUsuarioProc == com.mysql.cj.jdbc.result.ResultSetImpl@60d747e3
-            if (rsUsuarioProc.next()) {
-                //Tela que quer abrir
-                Tela4Menu telamenu = new Tela4Menu();
-                telamenu.setVisible(true);
-                dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorreto!!");
-            }
-
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Interface Login: " + erro);
-        }
-
-    }
-
     private ObjUsuario BuscarUsuario(ObjUsuario objUsuario) {
 
         this.conectar.conectaBanco();
@@ -345,6 +302,7 @@ public class Tela2Login extends javax.swing.JFrame {
                     + "usuario_nome,"
                     + "usuario_username,"
                     + "usuario_senha,"
+                    + "usuario_cpf,"
                     + "usuario_tipo"
                     + " FROM"
                     + " usuarios"
@@ -359,7 +317,8 @@ public class Tela2Login extends javax.swing.JFrame {
                 objUsuario.setUsuarioNome(this.conectar.getResultSet().getString(2));
                 objUsuario.setUsuarioUserName(this.conectar.getResultSet().getString(3));
                 objUsuario.setUsuarioSenha(this.conectar.getResultSet().getString(4));
-                objUsuario.setUsuarioTipo(this.conectar.getResultSet().getString(5));
+                objUsuario.setUsuarioCpf(this.conectar.getResultSet().getString(5));
+                objUsuario.setUsuarioTipo(this.conectar.getResultSet().getString(6));
 
             }
             
@@ -381,7 +340,7 @@ public class Tela2Login extends javax.swing.JFrame {
     
     private void Logar(ObjUsuario objUsuario){
         
-        String tipo = "";
+        String tipo;
         
         if (objUsuario == null) {
             JOptionPane.showMessageDialog(null, "Usuario ou Senha Incorretos!");    

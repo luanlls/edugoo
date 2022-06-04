@@ -6,6 +6,7 @@ public class ObjUsuario {
     private String usuarioNome = "";
     private String usuarioUserName = "";
     private String usuarioSenha = "";
+    private String usuarioCpf = "";
     private String usuarioTipo = "";
 
     //GET AND SETTER
@@ -39,6 +40,14 @@ public class ObjUsuario {
 
     public void setUsuarioSenha(String usuarioSenha) {
         this.usuarioSenha = usuarioSenha;
+    }
+    
+    public String getUsuarioCpf() {
+        return usuarioCpf;
+    }
+
+    public void setUsuarioCpf(String cpf) {
+        this.usuarioCpf = cpf;
     }
 
     public String getUsuarioTipo() {
