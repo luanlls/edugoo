@@ -35,14 +35,13 @@ drop table if exists alunos;
 create table alunos(
 	aluno_id						int				auto_increment	primary key,
 	aluno_categoria					varchar(30)		default 'Aluno',
-    
     aluno_periodo					varchar(30)		not null,
     aluno_fase						varchar(30)		not null,
     aluno_nome						varchar(30)		not null,
     aluno_sexo						varchar(15),
     aluno_datan						date			not null,
-    aluno_cpf_responsavel			varchar(30)		not null,
-    aluno_email_responsavel			varchar(40),
+    aluno_cpf						varchar(30)		not null,
+    aluno_email						varchar(40),
     aluno_telefone					varchar(30),
     aluno_endereco					varchar(30),
     aluno_compl						varchar(30),
