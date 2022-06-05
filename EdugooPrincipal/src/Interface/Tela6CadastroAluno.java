@@ -1,88 +1,18 @@
 package Interface;
 
 import Conexoes.MySQL;
+import Objetos.ObjAluno;
 import javax.swing.JOptionPane;
-import Objetos.ObjFuncionario;
 import com.sun.glass.events.KeyEvent;
 import java.text.SimpleDateFormat;
 
 public class Tela6CadastroAluno extends javax.swing.JFrame {
     
     MySQL conectar = new MySQL();
-    ObjFuncionario novoCliente = new ObjFuncionario();
+    ObjAluno novoAluno = new ObjAluno();
     
     public Tela6CadastroAluno() {
         initComponents();
-    } 
-
-    private void CadastraCliente(ObjFuncionario novoCliente) {
-        this.conectar.conectaBanco();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String datec = sdf.format(data_Cadastro.getDate());
-        String daten = sdf.format(data_Nasc.getDate());
-        
-        novoCliente.setDatac(datec);
-        novoCliente.setSexo((String) txtSexo.getSelectedItem());
-        novoCliente.setNome(txtNome.getText());
-        novoCliente.setTelefone(txtCelular.getText());
-        novoCliente.setCpf(txtCPF.getText());
-        novoCliente.setDatan(daten);
-        novoCliente.setCep(txtCEP.getText());
-        novoCliente.setEmail(txtEmail.getText());
-        novoCliente.setEndereco(txtEnd.getText());
-        novoCliente.setEmail(txtEmail.getText());
-        novoCliente.setNo(txtNumCasa.getText());
-        novoCliente.setCompl(txtCompl.getText());
-        novoCliente.setBairro(txtBairro.getText());
-        novoCliente.setCidade(txtCidade.getText());
-        novoCliente.setEstado((String) txtEstado.getSelectedItem());
-        
-        try {
-                        
-            this.conectar.insertSQL("INSERT INTO cadastro_clientes ("
-                    + "cliente_datacad,"
-                    + "cliente_sexo,"
-                    + "cliente_nome,"
-                    + "cliente_telefone,"
-                    + "cliente_cpf,"
-                    + "cliente_datanasci,"
-                    + "cliente_cep,"
-                    + "cliente_email,"
-                    + "cliente_endereço,"
-                    + "cliente_número,"
-                    + "cliente_complemento,"
-                    + "cliente_bairro,"
-                    + "cliente_cidade,"
-                    + "cliente_estado"
-                + ") VALUES ("
-                    + "'" + novoCliente.getDatac() + "',"
-                    + "'" + novoCliente.getSexo() + "',"
-                    + "'" + novoCliente.getNome() + "',"
-                    + "'" + novoCliente.getTelefone() + "',"
-                    + "'" + novoCliente.getCpf() + "',"
-                    + "'" + novoCliente.getDatan() + "',"
-                    + "'" + novoCliente.getCep() + "',"
-                    + "'" + novoCliente.getEmail() + "',"
-                    + "'" + novoCliente.getEndereco() + "',"
-                    + "'" + novoCliente.getNo() + "',"
-                    + "'" + novoCliente.getCompl() + "',"
-                    + "'" + novoCliente.getBairro() + "',"
-                    + "'" + novoCliente.getCidade() + "',"
-                    + "'" + novoCliente.getEstado() + "'"
-                + ");");
-            
-        } catch (Exception e) {
-            
-            System.out.println("Erro ao cadastrar cliente " +  e.getMessage());
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente");
-            
-        } finally{            
-            this.conectar.fechaBanco();
-            JOptionPane.showMessageDialog(null, "Obrigado por realizar seu cadastro!");
-            Tela4Menu tela = new Tela4Menu();
-            tela.setVisible(true);
-            dispose();
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -99,9 +29,9 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtEnd = new javax.swing.JTextField();
-        txtSexo = new javax.swing.JComboBox<>();
-        txtCPF = new javax.swing.JFormattedTextField();
-        txtCelular = new javax.swing.JFormattedTextField();
+        cbSexo = new javax.swing.JComboBox<>();
+        txtCPFResp = new javax.swing.JFormattedTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
         btnVoltar1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
@@ -116,19 +46,22 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         txtCompl = new javax.swing.JTextField();
         txtBairro = new javax.swing.JTextField();
         txtCidade = new javax.swing.JTextField();
-        txtEstado = new javax.swing.JComboBox<>();
+        cbEstado = new javax.swing.JComboBox<>();
         btnCancelar_Cliente = new javax.swing.JButton();
         btnSalvar_Cliente = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel17 = new javax.swing.JLabel();
+        dataN = new com.toedter.calendar.JDateChooser();
         jLabel19 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbFase = new javax.swing.JComboBox<>();
+        cbPeriodo = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         jLabel10.setBackground(new java.awt.Color(0, 51, 153));
         jLabel10.setFont(new java.awt.Font("Gadugi", 1, 18)); // NOI18N
@@ -152,7 +85,7 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 330, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel5.setText("E-mail");
+        jLabel5.setText("E-mail Responsavel");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -164,27 +97,27 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 220, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel8.setText("CPF");
+        jLabel8.setText("CPF Responsavel");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
         jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 1000, 45));
         jPanel1.add(txtEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 1030, 45));
 
-        txtSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Feminino", "Masculino" }));
-        jPanel1.add(txtSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 250, 160, 45));
+        cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Feminino", "Masculino" }));
+        jPanel1.add(cbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 250, 160, 45));
 
         try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCPFResp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(txtCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 200, 45));
+        jPanel1.add(txtCPFResp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 200, 45));
 
         try {
-            txtCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel1.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 360, 180, 45));
+        jPanel1.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 360, 180, 45));
 
         btnVoltar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/back.png"))); // NOI18N
         btnVoltar1.addActionListener(new java.awt.event.ActionListener() {
@@ -238,16 +171,10 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         jPanel1.add(txtNumCasa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 460, 110, 45));
         jPanel1.add(txtCompl, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, 230, 45));
         jPanel1.add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 570, 290, 45));
-
-        txtCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCidadeActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 570, 310, 45));
 
-        txtEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        jPanel1.add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 570, 80, 45));
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jPanel1.add(cbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 570, 80, 45));
 
         btnCancelar_Cliente.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         btnCancelar_Cliente.setText("CANCELAR");
@@ -270,37 +197,55 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         jPanel1.add(btnSalvar_Cliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 700, 170, 60));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EDUGOO2.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 40, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 30, -1, -1));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/ENFEITE2.jpg"))); // NOI18N
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 610, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(121, 38, 180));
-        jLabel3.setText("CADASTRO");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 370, 80));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 200, 40));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Aluno", "Funcionário" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 160, 50));
-
-        jLabel17.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel17.setText("Categoria");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jLabel3.setText("CADASTRO DE ALUNOS");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 560, 80));
+        jPanel1.add(dataN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 200, 40));
 
         jLabel19.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel19.setText("Fase:");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 121, -1, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Berçário", "Maternal 1", "Maternal 2", "Infantil 1", "Infantil 2" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 160, 160, 40));
+        cbFase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Berçário", "Maternal 1", "Maternal 2", "Infantil 1", "Infantil 2" }));
+        jPanel1.add(cbFase, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 160, 160, 40));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Parcial Manhã", "Parcial Tarde", "Semi-integral", "Integral" }));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 200, 40));
+        cbPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Parcial Manhã", "Parcial Tarde", "Semi-integral", "Integral" }));
+        jPanel1.add(cbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 200, 40));
 
         jLabel20.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         jLabel20.setText("Período:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, 100, 30));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 120, 80, 30));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel21.setText("*");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel22.setText("*");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel23.setText("*");
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel24.setText("*");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 120, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel25.setText("*");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 120, 20, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -331,11 +276,8 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVoltar1ActionPerformed
 
-    private void txtCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCidadeActionPerformed
-    }//GEN-LAST:event_txtCidadeActionPerformed
-
     private void btnSalvar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar_ClienteActionPerformed
-        CadastraCliente(novoCliente);
+        CadastraAluno(novoAluno);
     }//GEN-LAST:event_btnSalvar_ClienteActionPerformed
 
     private void txtNumCasaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumCasaKeyTyped
@@ -453,10 +395,11 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar_Cliente;
     private javax.swing.JButton btnSalvar_Cliente;
     private javax.swing.JButton btnVoltar1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> cbEstado;
+    private javax.swing.JComboBox<String> cbFase;
+    private javax.swing.JComboBox<String> cbPeriodo;
+    private javax.swing.JComboBox<String> cbSexo;
+    private com.toedter.calendar.JDateChooser dataN;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -465,11 +408,15 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -480,15 +427,97 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCEP;
-    private javax.swing.JFormattedTextField txtCPF;
-    private javax.swing.JFormattedTextField txtCelular;
+    private javax.swing.JFormattedTextField txtCPFResp;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtCompl;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEnd;
-    private javax.swing.JComboBox<String> txtEstado;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumCasa;
-    private javax.swing.JComboBox<String> txtSexo;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    private void CadastraAluno(ObjAluno novoAluno) {
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateNasc = sdf.format(dataN.getDate());
+
+            if (cbPeriodo.getSelectedItem().equals("Selecionar")
+                    || cbFase.getSelectedItem().equals("Selecionar") || txtNome.getText().equals("")
+                    || txtCPFResp.getText().equals("   .   .   -  ") || dateNasc.equals("")) {
+
+                JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
+            } else {
+                this.conectar.conectaBanco();
+
+                novoAluno.setAlunPeriodo((String) cbPeriodo.getSelectedItem());
+                novoAluno.setAlunFase((String) cbFase.getSelectedItem());
+                novoAluno.setAlunNome(txtNome.getText());
+                novoAluno.setAlunSexo((String) cbSexo.getSelectedItem());
+                novoAluno.setAlunDataN(dateNasc);
+                novoAluno.setAlunCPFResp(txtCPFResp.getText());
+                novoAluno.setAlunEmailResp(txtEmail.getText());
+                novoAluno.setAlunTelefone(txtTelefone.getText());
+                novoAluno.setAlunEndereco(txtEnd.getText());
+                novoAluno.setAlunNo(txtNumCasa.getText());
+                novoAluno.setAlunCompl(txtCompl.getText());
+                novoAluno.setAlunBairro(txtBairro.getText());
+                novoAluno.setAlunCidade(txtCidade.getText());
+                novoAluno.setAlunCep(txtCEP.getText());
+                novoAluno.setAlunEstado((String) cbEstado.getSelectedItem());
+
+                try {
+
+                    this.conectar.insertSQL("INSERT INTO alunos ("
+                            + "aluno_periodo,"
+                            + "aluno_fase,"
+                            + "aluno_nome,"
+                            + "aluno_sexo,"
+                            + "aluno_datan,"
+                            + "aluno_cpf_responsavel,"
+                            + "aluno_email_responsavel,"
+                            + "aluno_telefone,"
+                            + "aluno_endereco,"
+                            + "aluno_compl,"
+                            + "aluno_no,"
+                            + "aluno_bairro,"
+                            + "aluno_cidade,"
+                            + "aluno_cep,"
+                            + "aluno_estado"
+                            + ") VALUES ("
+                            + "'" + novoAluno.getAlunPeriodo() + "',"
+                            + "'" + novoAluno.getAlunFase() + "',"
+                            + "'" + novoAluno.getAlunNome() + "',"
+                            + "'" + novoAluno.getAlunSexo() + "',"
+                            + "'" + novoAluno.getAlunDataN() + "',"
+                            + "'" + novoAluno.getAlunCPFResp()+ "',"
+                            + "'" + novoAluno.getAlunEmailResp()+ "',"
+                            + "'" + novoAluno.getAlunTelefone() + "',"
+                            + "'" + novoAluno.getAlunEndereco() + "',"
+                            + "'" + novoAluno.getAlunCompl() + "',"
+                            + "'" + novoAluno.getAlunNo() + "',"
+                            + "'" + novoAluno.getAlunBairro() + "',"
+                            + "'" + novoAluno.getAlunCidade() + "',"
+                            + "'" + novoAluno.getAlunCep() + "',"
+                            + "'" + novoAluno.getAlunEstado() + "'"
+                            + ");");
+
+                } catch (Exception e) {
+
+                    System.out.println("Erro ao cadastrar cliente " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente");
+
+                } finally {
+                    this.conectar.fechaBanco();
+                    JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
+                    Tela4Menu tela = new Tela4Menu();
+                    tela.setVisible(true);
+                    dispose();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
+        }
+    }
 }

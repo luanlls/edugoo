@@ -184,7 +184,7 @@ public class Tela4Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnCadAlunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadAlunActionPerformed
-        Tela6Cadastro tela = new Tela6Cadastro();
+        Tela6CadastroAluno tela = new Tela6CadastroAluno();
         tela.setVisible(true);
         dispose();        
     }//GEN-LAST:event_btnCadAlunActionPerformed

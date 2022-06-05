@@ -162,7 +162,6 @@ public class Tela7Consultar extends javax.swing.JFrame {
 
         btnBuscar.setBackground(new java.awt.Color(102, 0, 204));
         btnBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
