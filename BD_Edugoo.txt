@@ -18,7 +18,7 @@ create table funcionarios(
     funcionario_fase		varchar(30)		not null,
     funcionario_nome		varchar(30)		not null,
     funcionario_sexo		varchar(15),
-    funcionario_datan		date			not null,
+    funcionario_datan		date			default '0001-01-01',
     funcionario_cpf			varchar(30)		not null,
     funcionario_email		varchar(40),
     funcionario_telefone	varchar(30),
@@ -30,3 +30,40 @@ create table funcionarios(
     funcionario_cep			varchar(20),
     funcionario_estado		varchar(10)
 );
+
+drop table if exists alunos;
+create table alunos(
+	aluno_id						int				auto_increment	primary key,
+    
+    aluno_categoria					varchar(30)		not null,
+    aluno_periodo					varchar(30)		not null,
+    aluno_fase						varchar(30)		not null,
+    aluno_nome						varchar(30)		not null,
+    aluno_sexo						varchar(15),
+    aluno_datan						date			default '0001-01-01',
+    aluno_cpf_responsavel			varchar(30)		not null,
+    aluno_email_responsavel			varchar(40)		not null,
+    aluno_telefone_responsavel		varchar(30)		not null,
+    aluno_compl						varchar(30),
+    aluno_no						varchar(10),
+    aluno_bairro					varchar(30),
+    aluno_cidade					varchar(30),
+    aluno_cep						varchar(20),
+    aluno_estado					varchar(10)
+);
+
+drop table if exists agenda;
+create table agenda (
+	agenda_id				int			auto_increment	primary key,
+	agenda_nome_aluno		varchar(30) not null,
+    agenda_cpf_aluno		varchar(30) not null,
+    agenda_comportamento 	varchar(30) not null,
+    agenda_alimentacao		varchar(30) not null,
+    agenda_evacuacao		varchar(30) not null,
+    agenda_soneca			varchar(30) not null,
+    agenda_recados			varchar(30),
+    agenda_alunos_id 		int not null references alunos(alunos_id)
+);
+
+insert into usuarios values (null, 'Ana','admin1', 'admin123','123.456.789-11', 'Administrador');
+insert into usuarios values (null, 'Luan','prof1', 'prof123','987.654.321-55', 'Professor');

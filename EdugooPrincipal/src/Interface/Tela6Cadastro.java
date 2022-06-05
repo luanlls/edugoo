@@ -426,84 +426,89 @@ public class Tela6Cadastro extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void CadastraFuncionario(ObjFuncionario novoFuncionario) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String dateNasc = sdf.format(dataN);
-        
-        if (cbCategoria.getSelectedItem().equals("Selecionar") || cbPeriodo.getSelectedItem().equals("Selecionar") ||
-            cbFase.getSelectedItem().equals("Selecionar") || txtNome.getText().equals("") || 
-            txtCPF.getText().equals("   .   .   -  ") || dateNasc.equals("")) {
 
-            JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
-        } else {
-            this.conectar.conectaBanco();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateNasc = sdf.format(dataN.getDate());
 
-            novoFuncionario.setFuncCategoria((String) cbCategoria.getSelectedItem());
-            novoFuncionario.setFuncPeriodo((String) cbPeriodo.getSelectedItem());
-            novoFuncionario.setFuncFase((String) cbFase.getSelectedItem());
-            novoFuncionario.setFuncNome(txtNome.getText());
-            novoFuncionario.setFuncSexo((String) cbSexo.getSelectedItem());
-            novoFuncionario.setFuncDataN(dateNasc);
-            novoFuncionario.setFuncCPF(txtCPF.getText());
-            novoFuncionario.setFuncEmail(txtEmail.getText());
-            novoFuncionario.setFuncTelefone(txtTelefone.getText());
-            novoFuncionario.setFuncEndereco(txtEnd.getText());
-            novoFuncionario.setFuncNo(txtNumCasa.getText());
-            novoFuncionario.setFuncCompl(txtCompl.getText());
-            novoFuncionario.setFuncBairro(txtBairro.getText());
-            novoFuncionario.setFuncCidade(txtCidade.getText());
-            novoFuncionario.setFuncCep(txtCEP.getText());
-            novoFuncionario.setFuncEstado((String) cbEstado.getSelectedItem());
+            if (cbCategoria.getSelectedItem().equals("Selecionar") || cbPeriodo.getSelectedItem().equals("Selecionar")
+                    || cbFase.getSelectedItem().equals("Selecionar") || txtNome.getText().equals("")
+                    || txtCPF.getText().equals("   .   .   -  ") || dateNasc.equals("")) {
 
-            try {
+                JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
+            } else {
+                this.conectar.conectaBanco();
 
-                this.conectar.insertSQL("INSERT INTO funcionarios ("
-                        + "funcionario_categoria,"
-                        + "funcionario_periodo,"
-                        + "funcionario_fase,"
-                        + "funcionario_nome,"
-                        + "funcionario_sexo,"
-                        + "funcionario_datan,"
-                        + "funcionario_cpf,"
-                        + "funcionario_email,"
-                        + "funcionario_telefone,"
-                        + "funcionario_endereco,"
-                        + "funcionario_compl,"
-                        + "funcionario_no,"
-                        + "funcionario_bairro,"
-                        + "funcionario_cidade,"
-                        + "funcionario_cep,"
-                        + "funcionario_estado"
-                        + ") VALUES ("
-                        + "'" + novoFuncionario.getFuncCategoria() + "',"
-                        + "'" + novoFuncionario.getFuncPeriodo() + "',"
-                        + "'" + novoFuncionario.getFuncFase() + "',"
-                        + "'" + novoFuncionario.getFuncNome() + "',"
-                        + "'" + novoFuncionario.getFuncSexo() + "',"
-                        + "'" + novoFuncionario.getFuncDataN() + "',"
-                        + "'" + novoFuncionario.getFuncCPF() + "',"
-                        + "'" + novoFuncionario.getFuncEmail() + "',"
-                        + "'" + novoFuncionario.getFuncTelefone() + "',"
-                        + "'" + novoFuncionario.getFuncEndereco() + "',"
-                        + "'" + novoFuncionario.getFuncCompl() + "',"
-                        + "'" + novoFuncionario.getFuncNo() + "',"
-                        + "'" + novoFuncionario.getFuncBairro() + "',"
-                        + "'" + novoFuncionario.getFuncCidade() + "',"
-                        + "'" + novoFuncionario.getFuncCep() + "',"
-                        + "'" + novoFuncionario.getFuncEstado() + "'"
-                        + ");");
+                novoFuncionario.setFuncCategoria((String) cbCategoria.getSelectedItem());
+                novoFuncionario.setFuncPeriodo((String) cbPeriodo.getSelectedItem());
+                novoFuncionario.setFuncFase((String) cbFase.getSelectedItem());
+                novoFuncionario.setFuncNome(txtNome.getText());
+                novoFuncionario.setFuncSexo((String) cbSexo.getSelectedItem());
+                novoFuncionario.setFuncDataN(dateNasc);
+                novoFuncionario.setFuncCPF(txtCPF.getText());
+                novoFuncionario.setFuncEmail(txtEmail.getText());
+                novoFuncionario.setFuncTelefone(txtTelefone.getText());
+                novoFuncionario.setFuncEndereco(txtEnd.getText());
+                novoFuncionario.setFuncNo(txtNumCasa.getText());
+                novoFuncionario.setFuncCompl(txtCompl.getText());
+                novoFuncionario.setFuncBairro(txtBairro.getText());
+                novoFuncionario.setFuncCidade(txtCidade.getText());
+                novoFuncionario.setFuncCep(txtCEP.getText());
+                novoFuncionario.setFuncEstado((String) cbEstado.getSelectedItem());
 
-            } catch (Exception e) {
+                try {
 
-                System.out.println("Erro ao cadastrar cliente " + e.getMessage());
-                JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente");
+                    this.conectar.insertSQL("INSERT INTO funcionarios ("
+                            + "funcionario_categoria,"
+                            + "funcionario_periodo,"
+                            + "funcionario_fase,"
+                            + "funcionario_nome,"
+                            + "funcionario_sexo,"
+                            + "funcionario_datan,"
+                            + "funcionario_cpf,"
+                            + "funcionario_email,"
+                            + "funcionario_telefone,"
+                            + "funcionario_endereco,"
+                            + "funcionario_compl,"
+                            + "funcionario_no,"
+                            + "funcionario_bairro,"
+                            + "funcionario_cidade,"
+                            + "funcionario_cep,"
+                            + "funcionario_estado"
+                            + ") VALUES ("
+                            + "'" + novoFuncionario.getFuncCategoria() + "',"
+                            + "'" + novoFuncionario.getFuncPeriodo() + "',"
+                            + "'" + novoFuncionario.getFuncFase() + "',"
+                            + "'" + novoFuncionario.getFuncNome() + "',"
+                            + "'" + novoFuncionario.getFuncSexo() + "',"
+                            + "'" + novoFuncionario.getFuncDataN() + "',"
+                            + "'" + novoFuncionario.getFuncCPF() + "',"
+                            + "'" + novoFuncionario.getFuncEmail() + "',"
+                            + "'" + novoFuncionario.getFuncTelefone() + "',"
+                            + "'" + novoFuncionario.getFuncEndereco() + "',"
+                            + "'" + novoFuncionario.getFuncCompl() + "',"
+                            + "'" + novoFuncionario.getFuncNo() + "',"
+                            + "'" + novoFuncionario.getFuncBairro() + "',"
+                            + "'" + novoFuncionario.getFuncCidade() + "',"
+                            + "'" + novoFuncionario.getFuncCep() + "',"
+                            + "'" + novoFuncionario.getFuncEstado() + "'"
+                            + ");");
 
-            } finally {
-                this.conectar.fechaBanco();
-                JOptionPane.showMessageDialog(null, "Obrigado por realizar seu cadastro!");
-                Tela4Menu tela = new Tela4Menu();
-                tela.setVisible(true);
-                dispose();
+                } catch (Exception e) {
+
+                    System.out.println("Erro ao cadastrar cliente " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente");
+
+                } finally {
+                    this.conectar.fechaBanco();
+                    JOptionPane.showMessageDialog(null, "Cadastro Realizado!");
+                    Tela4Menu tela = new Tela4Menu();
+                    tela.setVisible(true);
+                    dispose();
+                }
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
         }
     }
 }
