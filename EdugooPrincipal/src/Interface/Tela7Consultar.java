@@ -3,6 +3,11 @@ package Interface;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
 import Objetos.ObjConsulta;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Tela7Consultar extends javax.swing.JFrame {
 
@@ -42,7 +47,6 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCpf = new javax.swing.JTextField();
         txtSexo = new javax.swing.JTextField();
-        DataN = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         txtCep = new javax.swing.JTextField();
@@ -53,6 +57,11 @@ public class Tela7Consultar extends javax.swing.JFrame {
         txtCidade = new javax.swing.JTextField();
         cbTipo = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
+        dataN = new com.toedter.calendar.JDateChooser();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,6 +147,11 @@ public class Tela7Consultar extends javax.swing.JFrame {
         btnEditar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         btnEditar.setForeground(new java.awt.Color(255, 102, 0));
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 170, 130, 50));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/back.png"))); // NOI18N
@@ -169,9 +183,6 @@ public class Tela7Consultar extends javax.swing.JFrame {
 
         txtSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(txtSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 170, 50));
-
-        DataN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel1.add(DataN, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 190, 50));
 
         txtEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 450, 50));
@@ -205,6 +216,29 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel18.setText("Tipo:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, -1, -1));
 
+        dataN.setToolTipText("");
+        jPanel1.add(dataN, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 200, 50));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel19.setText("*");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel20.setText("*");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel21.setText("*");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel22.setText("*");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,6 +269,10 @@ public class Tela7Consultar extends javax.swing.JFrame {
         txtCampoNomeConsulta.setFont(txtCpf.getFont());
         txtCampoNomeConsulta.setForeground(txtCpf.getForeground());
     }//GEN-LAST:event_txtCampoNomeConsultaMouseClicked
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        Editar(objConsulta);
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     public static void main(String args[]) {
 
@@ -268,10 +306,10 @@ public class Tela7Consultar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField DataN;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JComboBox<String> cbTipo;
+    private com.toedter.calendar.JDateChooser dataN;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -283,7 +321,11 @@ public class Tela7Consultar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -307,6 +349,9 @@ public class Tela7Consultar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void Consultar(ObjConsulta objConsulta) {
+        SimpleDateFormat sdfBr = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        
         String consultaNome = this.txtCampoNomeConsulta.getText();
         String consultaTipo = ((String) this.cbTipo.getSelectedItem());
         String nomeTabela;
@@ -314,35 +359,35 @@ public class Tela7Consultar extends javax.swing.JFrame {
         if (consultaNome.equals("") || consultaNome.equals("Digite o nome para consulta") || consultaTipo.equals("Selecionar")) {
             JOptionPane.showMessageDialog(null, "Por favor inserir Nome e Tipo!!");
         } else {
-            
-            if(consultaTipo.equals("Funcionario")){
+
+            if (consultaTipo.equals("Funcionario")) {
                 nomeTabela = "funcionarios";
             } else {
                 nomeTabela = "alunos";
             }
-            
-            this.conectar.conectaBanco();
 
             try {
+                this.conectar.conectaBanco();
+
                 this.conectar.executarSQL(
                         "SELECT "
                         + "*"
                         + " FROM"
-                        + " " + nomeTabela 
+                        + " " + nomeTabela
                         + " WHERE "
                         + consultaTipo.toLowerCase() + "_nome = '" + consultaNome + "'"
                         + ";"
                 );
 
                 while (this.conectar.getResultSet().next()) {
-                    
+
                     objConsulta.setConsId(this.conectar.getResultSet().getInt(1));
                     objConsulta.setConsCategoria(this.conectar.getResultSet().getString(2));
                     objConsulta.setConsPeriodo(this.conectar.getResultSet().getString(3));
                     objConsulta.setConsFase(this.conectar.getResultSet().getString(4));
                     objConsulta.setConsNome(this.conectar.getResultSet().getString(5));
                     objConsulta.setConsSexo(this.conectar.getResultSet().getString(6));
-                    objConsulta.setConsDataN((String)this.conectar.getResultSet().getString(7));
+                    objConsulta.setConsDataN((String) this.conectar.getResultSet().getString(7));
                     objConsulta.setConsCPF(this.conectar.getResultSet().getString(8));
                     objConsulta.setConsEmail(this.conectar.getResultSet().getString(9));
                     objConsulta.setConsTelefone(this.conectar.getResultSet().getString(10));
@@ -360,14 +405,23 @@ public class Tela7Consultar extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, consultaTipo + " nao Encontrado!!");
                 }
 
+                Date date = sdf.parse(objConsulta.getConsDataN());
+                String dateSbr = sdfBr.format(date);
+                objConsulta.setConsDataN(dateSbr);
+
             } catch (Exception e) {
                 System.out.println("Erro ao consultar" + e.getMessage());
                 JOptionPane.showMessageDialog(null, "Erro ao buscar cliente");
 
             } finally {
+                
                 txtCpf.setText(objConsulta.getConsCPF());
                 txtSexo.setText(objConsulta.getConsSexo());
-                DataN.setText(objConsulta.getConsDataN());
+                try {
+                    dataN.setDate(sdfBr.parse(objConsulta.getConsDataN()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(Tela7Consultar.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 txtTelefone.setText(objConsulta.getConsTelefone());
                 txtEmail.setText(objConsulta.getConsEmail());
                 txtCep.setText(objConsulta.getConsCep());
@@ -380,6 +434,91 @@ public class Tela7Consultar extends javax.swing.JFrame {
 
                 this.conectar.fechaBanco();
             }
+        }
+    }
+
+    private void Editar(ObjConsulta objConsulta) {
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateNasc = sdf.format(dataN.getDate());
+
+            String consultaNome = this.txtCampoNomeConsulta.getText();
+            String consultaTipo = ((String) this.cbTipo.getSelectedItem());
+            String nomeTabela;
+
+            if (consultaNome.equals("") || consultaNome.equals("Digite o nome para consulta")
+                    || consultaTipo.equals("Selecionar") || txtCpf.getText().equals("") || dateNasc.equals("")) {
+                JOptionPane.showMessageDialog(null, "Por favor fornecer dados aos campos com (*)!!");
+            } else {
+
+                if (consultaTipo.equals("Funcionario")) {
+                    nomeTabela = "funcionarios";
+                } else {
+                    nomeTabela = "alunos";
+                }
+
+                this.conectar.conectaBanco();
+                try {
+
+                    this.conectar.executarSQL(
+                            "SELECT "
+                            + consultaTipo.toLowerCase() + "_nome"
+                            + " FROM"
+                            + " " + nomeTabela
+                            + " WHERE "
+                            + consultaTipo.toLowerCase() + "_nome = '" + consultaNome + "'"
+                            + ";"
+                    );
+
+                    while (this.conectar.getResultSet().next()) {
+                        objConsulta.setConsNome(this.conectar.getResultSet().getString(1));
+                    }
+
+                    if (objConsulta.getConsNome().equals("")) {
+                        JOptionPane.showMessageDialog(null, consultaTipo + " nao Encontrado!!");
+                    } else {
+                        try {
+
+                            this.conectar.insertSQL("UPDATE " + nomeTabela + " SET "
+                                    + consultaTipo.toLowerCase() + "_cpf = '" + txtCpf.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_sexo = '" + txtSexo.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_datan = '" + dateNasc + "',"
+                                    + consultaTipo.toLowerCase() + "_email = '" + txtEmail.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_cep = '" + txtCep.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_bairro = '" + txtBairro.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_endereco = '" + txtEndereco.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_no = '" + txtNo.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_compl = '" + txtCompl.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_cidade = '" + txtCidade.getText() + "',"
+                                    + consultaTipo.toLowerCase() + "_estado = '" + txtUf.getText() + "'"
+                                    + " WHERE "
+                                    + consultaTipo.toLowerCase() + "_nome = '" + consultaNome + "'"
+                                    + ";");
+
+                        } catch (Exception e) {
+
+                            System.out.println("Erro ao Atualizar " + consultaTipo + ": " + e.getMessage());
+                            JOptionPane.showMessageDialog(null, "Erro ao Atualizar " + consultaTipo);
+
+                        } finally {
+                            JOptionPane.showMessageDialog(null, "Atualização Realizada!");
+                        }
+                    }
+
+                } catch (Exception e) {
+                    System.out.println("Erro ao consultar" + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Erro ao buscar cliente");
+
+                } finally {
+                    this.conectar.fechaBanco();
+                    Tela4Menu tela = new Tela4Menu();
+                    tela.setVisible(true);
+                    dispose();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
         }
     }
 }

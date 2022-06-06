@@ -157,7 +157,7 @@ public class Tela3CadastroUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        Tela4Menu tela = new Tela4Menu();
+        Tela2Login tela = new Tela2Login();
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
