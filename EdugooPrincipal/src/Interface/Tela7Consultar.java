@@ -62,6 +62,7 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,6 +240,15 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel22.setText("*");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, -1, -1));
 
+        btnExcluir.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 670, 140, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -274,6 +284,10 @@ public class Tela7Consultar extends javax.swing.JFrame {
         Editar(objConsulta);
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        Deletar(objConsulta);
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -308,6 +322,7 @@ public class Tela7Consultar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JComboBox<String> cbTipo;
     private com.toedter.calendar.JDateChooser dataN;
     private javax.swing.JButton jButton3;
@@ -351,7 +366,7 @@ public class Tela7Consultar extends javax.swing.JFrame {
     private void Consultar(ObjConsulta objConsulta) {
         SimpleDateFormat sdfBr = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         String consultaNome = this.txtCampoNomeConsulta.getText();
         String consultaTipo = ((String) this.cbTipo.getSelectedItem());
         String nomeTabela;
@@ -411,10 +426,9 @@ public class Tela7Consultar extends javax.swing.JFrame {
 
             } catch (Exception e) {
                 System.out.println("Erro ao consultar" + e.getMessage());
-                JOptionPane.showMessageDialog(null, "Erro ao buscar cliente");
 
             } finally {
-                
+
                 txtCpf.setText(objConsulta.getConsCPF());
                 txtSexo.setText(objConsulta.getConsSexo());
                 try {
@@ -503,22 +517,117 @@ public class Tela7Consultar extends javax.swing.JFrame {
 
                         } finally {
                             JOptionPane.showMessageDialog(null, "Atualização Realizada!");
+                            LimpaCampos();
                         }
                     }
 
                 } catch (Exception e) {
                     System.out.println("Erro ao consultar" + e.getMessage());
-                    JOptionPane.showMessageDialog(null, "Erro ao buscar cliente");
+                    JOptionPane.showMessageDialog(null, "Erro na busca");
 
                 } finally {
                     this.conectar.fechaBanco();
-                    Tela4Menu tela = new Tela4Menu();
-                    tela.setVisible(true);
-                    dispose();
                 }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Campos com (*) sao Obrigatorios!!");
         }
+    }
+
+    private void Deletar(ObjConsulta objConsulta) {
+
+        String consultaNome = this.txtCampoNomeConsulta.getText();
+        String consultaTipo = ((String) this.cbTipo.getSelectedItem());
+        String nomeTabela;
+
+        if (consultaNome.equals("") || consultaNome.equals("Digite o nome para consulta") || consultaTipo.equals("Selecionar")) {
+            JOptionPane.showMessageDialog(null, "Por favor inserir Nome e Tipo!!");
+        } else {
+
+            if (consultaTipo.equals("Funcionario")) {
+                nomeTabela = "funcionarios";
+            } else {
+                nomeTabela = "alunos";
+            }
+
+            this.conectar.conectaBanco();
+            try {
+
+                this.conectar.executarSQL(
+                        "SELECT "
+                        + consultaTipo.toLowerCase() + "_id,"
+                        + consultaTipo.toLowerCase() + "_nome"
+                        + " FROM"
+                        + " " + nomeTabela
+                        + " WHERE "
+                        + consultaTipo.toLowerCase() + "_nome = '" + consultaNome + "'"
+                        + ";"
+                );
+
+                while (this.conectar.getResultSet().next()) {
+                    objConsulta.setConsId(Integer.parseInt(this.conectar.getResultSet().getString(1)));
+                    objConsulta.setConsNome(this.conectar.getResultSet().getString(2));
+                }
+
+                if (objConsulta.getConsNome().equals("")) {
+                    JOptionPane.showMessageDialog(null, consultaTipo + " nao Encontrado para excluir !!");
+                } else {
+                    try {
+                        if (JOptionPane.showConfirmDialog(this, "Deseja Excluir?", "Atencao",
+                                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                            this.conectar.updateSQL(
+                                    "DELETE FROM "
+                                    + nomeTabela
+                                    + " WHERE "
+                                    + consultaTipo.toLowerCase() + "_id = " + objConsulta.getConsId()
+                                    + ";"
+                            );
+
+                            JOptionPane.showMessageDialog(null, "Executado com Sucesso");
+                            
+                            LimpaCampos();
+                        }
+                        this.conectar.updateSQL(
+                                "DELETE FROM "
+                                + nomeTabela
+                                + " WHERE "
+                                + consultaTipo.toLowerCase() + "_id = " + objConsulta.getConsId()
+                                + ";"
+                        );
+                    } catch (Exception e) {
+                        System.out.println("Erro ao Excluir" + e.getMessage());
+                        JOptionPane.showMessageDialog(null, "Erro na Exclusão");
+                    }
+                }
+
+            } catch (Exception e) {
+                System.out.println("Erro ao consultar" + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro na Busca");
+
+            } finally {
+                this.conectar.fechaBanco();
+            }
+        }
+    }
+
+    private void LimpaCampos() {
+        SimpleDateFormat sdfBr = new SimpleDateFormat("dd/MM/yyyy");
+        txtCpf.setText("");
+        txtSexo.setText("");
+        try {
+            dataN.setDate(sdfBr.parse("01/01/1500"));
+        } catch (ParseException ex) {
+            Logger.getLogger(Tela7Consultar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtTelefone.setText(objConsulta.getConsTelefone());
+        txtEmail.setText(objConsulta.getConsEmail());
+        txtCep.setText(objConsulta.getConsCep());
+        txtBairro.setText(objConsulta.getConsBairro());
+        txtEndereco.setText(objConsulta.getConsEndereco());
+        txtNo.setText(objConsulta.getConsNo());
+        txtCompl.setText(objConsulta.getConsCompl());
+        txtCidade.setText(objConsulta.getConsCidade());
+        txtUf.setText(objConsulta.getConsEstado());
     }
 }
