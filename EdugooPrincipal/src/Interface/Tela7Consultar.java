@@ -1,89 +1,18 @@
 package Interface;
 
-import java.awt.Color;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
-import Objetos.ObjFuncionario;
+import Objetos.ObjConsulta;
 
 public class Tela7Consultar extends javax.swing.JFrame {
-    
+
     MySQL conectar = new MySQL();
-    ObjFuncionario novoCliente = new ObjFuncionario();
+    ObjConsulta objConsulta = new ObjConsulta();
 
     public Tela7Consultar() {
         initComponents();
     }
 
-    private void BuscarCliente(ObjFuncionario novoCliente){
-        this.conectar.conectaBanco();
-        
-        String consultaNome = this.ConsultaNome.getText();
-                
-        try {
-            this.conectar.executarSQL(
-                   "SELECT "
-                    + "cliente_sexo,"
-                    + "cliente_CPF,"
-                    + "cliente_datanasci,"
-                    + "cliente_email,"
-                    + "cliente_telefone,"
-                    + "cliente_endereço,"
-                    + "cliente_número,"
-                    + "cliente_complemento,"
-                    + "cliente_bairro,"
-                    + "cliente_cidade,"
-                    + "cliente_estado"       
-                    + "cliente_cep,"
-                                                                 
-                 + " FROM"
-                     + " edugoo.cadastro_clientes"
-                 + " WHERE"
-                     + " cliente_nome = '" + consultaNome + "'"
-                + ";"
-            );
-            
-            while(this.conectar.getResultSet().next()){
-                
-                novoCliente.setSexo(this.conectar.getResultSet().getString(1));
-                novoCliente.setCpf(this.conectar.getResultSet().getString(2));
-                novoCliente.setDatan(this.conectar.getResultSet().getString(3));
-                novoCliente.setEmail(this.conectar.getResultSet().getString(4));
-                novoCliente.setTelefone(this.conectar.getResultSet().getString(5));
-                novoCliente.setEndereco(this.conectar.getResultSet().getString(6));
-                novoCliente.setNo(this.conectar.getResultSet().getString(7));
-                novoCliente.setCompl(this.conectar.getResultSet().getString(8));
-                novoCliente.setBairro(this.conectar.getResultSet().getString(9));
-                novoCliente.setCidade(this.conectar.getResultSet().getString(10));
-                novoCliente.setEstado(this.conectar.getResultSet().getString(11));
-                novoCliente.setCep(this.conectar.getResultSet().getString(12));
-                
-           }
-            
-           if(novoCliente.getNome() == ""){
-                JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
-           }
-           
-        } catch (Exception e) {            
-            System.out.println("Erro ao consultar cliente " +  e.getMessage());
-            JOptionPane.showMessageDialog(null, "Erro ao buscar cliente");
-            
-        }finally{
-            ConsultaSexo.setText(novoCliente.getSexo());
-            ConsultaCpf.setText(novoCliente.getCpf());
-            ConsultaDataN.setText(novoCliente.getDatan());
-            ConsultaEmail.setText(novoCliente.getEmail());
-            ConsultaTelefone.setText(novoCliente.getTelefone());
-            ConsultaEndereco.setText(novoCliente.getEndereco());
-            ConsultaNo.setText(novoCliente.getNo());
-            ConsultaCompl.setText(novoCliente.getCompl());
-            ConsultaBairro.setText(novoCliente.getBairro());
-            ConsultaCidade.setText(novoCliente.getCidade());
-            ConsultaEstado.setText(novoCliente.getEstado());
-            ConsultaCep.setText(novoCliente.getCep());
-            this.conectar.fechaBanco();   
-        }               
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,7 +20,7 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        camponomeconsulta = new javax.swing.JTextField();
+        txtCampoNomeConsulta = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -107,21 +36,23 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
+        txtSexo = new javax.swing.JTextField();
+        DataN = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
+        txtCep = new javax.swing.JTextField();
+        txtBairro = new javax.swing.JTextField();
+        txtUf = new javax.swing.JTextField();
+        txtNo = new javax.swing.JTextField();
+        txtCompl = new javax.swing.JTextField();
+        txtCidade = new javax.swing.JTextField();
+        cbTipo = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,30 +68,16 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel3.setText("Nome:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
-        camponomeconsulta.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        camponomeconsulta.setForeground(new java.awt.Color(204, 204, 204));
-        camponomeconsulta.setText("Digite o nome para consulta");
-        camponomeconsulta.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                camponomeconsultaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                camponomeconsultaFocusLost(evt);
-            }
-        });
-        camponomeconsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCampoNomeConsulta.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        txtCampoNomeConsulta.setForeground(new java.awt.Color(204, 204, 204));
+        txtCampoNomeConsulta.setText("Digite o nome para consulta");
+        txtCampoNomeConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                camponomeconsultaMouseClicked(evt);
+                txtCampoNomeConsultaMouseClicked(evt);
             }
         });
-        camponomeconsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                camponomeconsultaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(camponomeconsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 650, 50));
+        jPanel1.add(txtCampoNomeConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 500, 50));
 
-        btnBuscar.setBackground(new java.awt.Color(102, 0, 204));
         btnBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -231,33 +148,62 @@ public class Tela7Consultar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 90, 90));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/borda2.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 530, 390));
-
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(102, 0, 204));
         jLabel17.setText("______________________________________________________________________________________________________________________________");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 910, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 330, 190, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/borda2.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 520, 390));
+
+        txtTelefone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 330, 190, 50));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/BORDA1.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 340, 350));
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 220, 50));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 170, 50));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 190, 50));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 450, 50));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, 570, 50));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 180, 50));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 440, 290, 50));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 60, 50));
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, 90, 50));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, 270, 50));
-        jPanel1.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 670, 330, 50));
+        txtCpf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 220, 50));
+
+        txtSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 170, 50));
+
+        DataN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(DataN, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 330, 190, 50));
+
+        txtEmail.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 450, 50));
+
+        txtEndereco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, 570, 50));
+
+        txtCep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 180, 50));
+
+        txtBairro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 440, 290, 50));
+
+        txtUf.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtUf, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 670, 60, 50));
+
+        txtNo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 550, 90, 50));
+
+        txtCompl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtCompl, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 550, 270, 50));
+
+        txtCidade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 670, 330, 50));
+
+        cbTipo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Funcionario", "Aluno" }));
+        jPanel1.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 170, 140, 50));
+
+        jLabel18.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jLabel18.setText("Tipo:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -281,28 +227,17 @@ public class Tela7Consultar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       BuscarCliente (novoCliente);
+        Consultar(objConsulta);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void camponomeconsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camponomeconsultaActionPerformed
-       
-    }//GEN-LAST:event_camponomeconsultaActionPerformed
-/*
-    private void camponomeconsultaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_camponomeconsultaFocusGained
-       
-    }//GEN-LAST:event_camponomeconsultaFocusGained
+    private void txtCampoNomeConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCampoNomeConsultaMouseClicked
+        txtCampoNomeConsulta.setText("");
+        txtCampoNomeConsulta.setFont(txtCpf.getFont());
+        txtCampoNomeConsulta.setForeground(txtCpf.getForeground());
+    }//GEN-LAST:event_txtCampoNomeConsultaMouseClicked
 
-    private void camponomeconsultaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_camponomeconsultaFocusLost
-       
-    }//GEN-LAST:event_camponomeconsultaFocusLost
-*/
-    private void camponomeconsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_camponomeconsultaMouseClicked
-       camponomeconsulta.setText("");
-    }//GEN-LAST:event_camponomeconsultaMouseClicked
-      
-      
     public static void main(String args[]) {
-       
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -333,9 +268,10 @@ public class Tela7Consultar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField DataN;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JTextField camponomeconsulta;
+    private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -346,6 +282,7 @@ public class Tela7Consultar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -355,17 +292,94 @@ public class Tela7Consultar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCampoNomeConsulta;
+    private javax.swing.JTextField txtCep;
+    private javax.swing.JTextField txtCidade;
+    private javax.swing.JTextField txtCompl;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtNo;
+    private javax.swing.JTextField txtSexo;
+    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JTextField txtUf;
     // End of variables declaration//GEN-END:variables
+
+    private void Consultar(ObjConsulta objConsulta) {
+        String consultaNome = this.txtCampoNomeConsulta.getText();
+        String consultaTipo = ((String) this.cbTipo.getSelectedItem());
+        String nomeTabela;
+
+        if (consultaNome.equals("") || consultaNome.equals("Digite o nome para consulta") || consultaTipo.equals("Selecionar")) {
+            JOptionPane.showMessageDialog(null, "Por favor inserir Nome e Tipo!!");
+        } else {
+            
+            if(consultaTipo.equals("Funcionario")){
+                nomeTabela = "funcionarios";
+            } else {
+                nomeTabela = "alunos";
+            }
+            
+            this.conectar.conectaBanco();
+
+            try {
+                this.conectar.executarSQL(
+                        "SELECT "
+                        + "*"
+                        + " FROM"
+                        + " " + nomeTabela 
+                        + " WHERE "
+                        + consultaTipo.toLowerCase() + "_nome = '" + consultaNome + "'"
+                        + ";"
+                );
+
+                while (this.conectar.getResultSet().next()) {
+                    
+                    objConsulta.setConsId(this.conectar.getResultSet().getInt(1));
+                    objConsulta.setConsCategoria(this.conectar.getResultSet().getString(2));
+                    objConsulta.setConsPeriodo(this.conectar.getResultSet().getString(3));
+                    objConsulta.setConsFase(this.conectar.getResultSet().getString(4));
+                    objConsulta.setConsNome(this.conectar.getResultSet().getString(5));
+                    objConsulta.setConsSexo(this.conectar.getResultSet().getString(6));
+                    objConsulta.setConsDataN((String)this.conectar.getResultSet().getString(7));
+                    objConsulta.setConsCPF(this.conectar.getResultSet().getString(8));
+                    objConsulta.setConsEmail(this.conectar.getResultSet().getString(9));
+                    objConsulta.setConsTelefone(this.conectar.getResultSet().getString(10));
+                    objConsulta.setConsEndereco(this.conectar.getResultSet().getString(11));
+                    objConsulta.setConsCompl(this.conectar.getResultSet().getString(12));
+                    objConsulta.setConsNo(this.conectar.getResultSet().getString(13));
+                    objConsulta.setConsBairro(this.conectar.getResultSet().getString(14));
+                    objConsulta.setConsCidade(this.conectar.getResultSet().getString(15));
+                    objConsulta.setConsCep(this.conectar.getResultSet().getString(16));
+                    objConsulta.setConsEstado(this.conectar.getResultSet().getString(17));
+
+                }
+
+                if (objConsulta.getConsNome().equals("")) {
+                    JOptionPane.showMessageDialog(null, consultaTipo + " nao Encontrado!!");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Erro ao consultar" + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ao buscar cliente");
+
+            } finally {
+                txtCpf.setText(objConsulta.getConsCPF());
+                txtSexo.setText(objConsulta.getConsSexo());
+                DataN.setText(objConsulta.getConsDataN());
+                txtTelefone.setText(objConsulta.getConsTelefone());
+                txtEmail.setText(objConsulta.getConsEmail());
+                txtCep.setText(objConsulta.getConsCep());
+                txtBairro.setText(objConsulta.getConsBairro());
+                txtEndereco.setText(objConsulta.getConsEndereco());
+                txtNo.setText(objConsulta.getConsNo());
+                txtCompl.setText(objConsulta.getConsCompl());
+                txtCidade.setText(objConsulta.getConsCidade());
+                txtUf.setText(objConsulta.getConsEstado());
+
+                this.conectar.fechaBanco();
+            }
+        }
+    }
 }

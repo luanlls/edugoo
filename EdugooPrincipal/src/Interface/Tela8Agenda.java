@@ -8,7 +8,7 @@ public class Tela8Agenda extends javax.swing.JFrame {
 
     MySQL conectar = new MySQL();
     ObjAgenda novaAgenda = new ObjAgenda();
-    
+
     public Tela8Agenda() {
         initComponents();
     }
@@ -46,6 +46,11 @@ public class Tela8Agenda extends javax.swing.JFrame {
         txtNome.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         txtNome.setForeground(new java.awt.Color(204, 204, 204));
         txtNome.setText("Digite o nome do aluno");
+        txtNome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtNomeMouseClicked(evt);
+            }
+        });
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -54,12 +59,10 @@ public class Tela8Agenda extends javax.swing.JFrame {
         jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 670, 40));
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("ALUNO:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 80, 80));
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Comportamento:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
 
@@ -67,7 +70,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
         jPanel1.add(comboComportamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Alimentação:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, -1, -1));
 
@@ -75,7 +77,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
         jPanel1.add(comboAlimentacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 360, 160, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Evacuação:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, -1, -1));
 
@@ -88,7 +89,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
         jPanel1.add(comboEvacuacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Soneca:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 320, -1, -1));
 
@@ -96,11 +96,11 @@ public class Tela8Agenda extends javax.swing.JFrame {
         jPanel1.add(comboSoneca, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 360, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Recados:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, -1, -1));
 
         txtRecados.setColumns(20);
+        txtRecados.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtRecados.setRows(5);
         jScrollPane1.setViewportView(txtRecados);
 
@@ -108,7 +108,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 102, 0));
         jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("ENVIAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +157,7 @@ public class Tela8Agenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CadastraUsuario(novaAgenda);
+        EnviarAgenda(novaAgenda);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void comboEvacuacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEvacuacaoActionPerformed
@@ -168,6 +167,12 @@ public class Tela8Agenda extends javax.swing.JFrame {
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void txtNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeMouseClicked
+        txtNome.setText("");
+        txtNome.setFont(txtRecados.getFont());
+        txtNome.setForeground(txtRecados.getForeground());
+    }//GEN-LAST:event_txtNomeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -227,14 +232,14 @@ public class Tela8Agenda extends javax.swing.JFrame {
     private javax.swing.JTextArea txtRecados;
     // End of variables declaration//GEN-END:variables
 
-    private void CadastraUsuario(ObjAgenda novaAgenda) {
+    private void EnviarAgenda(ObjAgenda novaAgenda) {
 
         if (txtNome.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "O Nome do aluno é obrigatorio!");
         } else {
             this.conectar.conectaBanco();
-            
+
             novaAgenda.setAgendaNomeAluno(txtNome.getText());
             //CPF
             novaAgenda.setAgendaComportamento((String) comboComportamento.getSelectedItem());
@@ -243,12 +248,12 @@ public class Tela8Agenda extends javax.swing.JFrame {
             novaAgenda.setAgendaSoneca((String) comboSoneca.getSelectedItem());
             novaAgenda.setAgendaRecados(txtRecados.getText());
             //Aluno ID
-            
+
             try {
                 this.conectar.executarSQL(
-                        "SELECT "
-                        + "aluno_id,"
-                        + "aluno_cpf_responsavel"        
+                        "SELECT"
+                        + " aluno_id,"
+                        + " aluno_cpf"
                         + " FROM"
                         + " alunos"
                         + " WHERE"
@@ -262,7 +267,7 @@ public class Tela8Agenda extends javax.swing.JFrame {
                 }
 
                 if (novaAgenda.getAgendaCPFAluno().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Nome do Aluno Incorreto!");
+                    /*JOptionPane.showMessageDialog(null, "Nome do Aluno Incorreto!");*/
                     novaAgenda = null;
                 }
             } catch (Exception e) {
@@ -274,38 +279,41 @@ public class Tela8Agenda extends javax.swing.JFrame {
                 this.conectar.fechaBanco();
             }
 
-            try {
+            if (novaAgenda == null) {
+                JOptionPane.showMessageDialog(null, "Nome do Aluno Incorreto!");
+            } else {
+                try {
+                    this.conectar.conectaBanco();
+                    this.conectar.insertSQL("INSERT INTO agenda ("
+                            + "agenda_nome_aluno,"
+                            + "agenda_cpf_aluno,"
+                            + "agenda_comportamento,"
+                            + "agenda_alimentacao,"
+                            + "agenda_evacuacao,"
+                            + "agenda_soneca,"
+                            + "agenda_recados,"
+                            + "agenda_alunos_id"
+                            + ") VALUES ("
+                            + "'" + novaAgenda.getAgendaNomeAluno() + "',"
+                            + "'" + novaAgenda.getAgendaCPFAluno() + "',"
+                            + "'" + novaAgenda.getAgendaComportamento() + "',"
+                            + "'" + novaAgenda.getAgendaAlimentacao() + "',"
+                            + "'" + novaAgenda.getAgendaEvacuacao() + "',"
+                            + "'" + novaAgenda.getAgendaSoneca() + "',"
+                            + "'" + novaAgenda.getAgendaRecados() + "',"
+                            + "'" + novaAgenda.getAgendaAlunosId() + "',"
+                            + ");");
 
-                this.conectar.insertSQL("INSERT INTO usuarios ("
-                        + "agenda_nome_aluno,"
-                        + "agenda_cpf_aluno,"
-                        + "agenda_comportamento,"
-                        + "agenda_alimentacao,"
-                        + "agenda_evacuacao,"
-                        + "agenda_soneca,"
-                        + "agenda_recados,"
-                        + "agenda_alunos_id"
-                        + ") VALUES ("
-                        + "'" + novaAgenda.getAgendaNomeAluno() + "',"
-                        + "'" + novaAgenda.getAgendaCPFAluno() + "',"
-                        + "'" + novaAgenda.getAgendaComportamento() + "',"
-                        + "'" + novaAgenda.getAgendaAlimentacao() + "',"
-                        + "'" + novaAgenda.getAgendaEvacuacao() + "',"
-                        + "'" + novaAgenda.getAgendaSoneca() + "',"
-                        + "'" + novaAgenda.getAgendaRecados() + "',"
-                        + "'" + novaAgenda.getAgendaAlunosId() + "',"
-                        + ");");
+                } catch (Exception e) {
 
-            } catch (Exception e) {
+                    System.out.println("Erro ao enviar agenda " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Erro ao enviar agenda");
 
-                System.out.println("Erro ao enviar agenda " + e.getMessage());
-                JOptionPane.showMessageDialog(null, "Erro ao enviar agenda");
-
-            } finally {
-                this.conectar.fechaBanco();
-                JOptionPane.showMessageDialog(null, "Agenda enviada com sucesso!");
+                } finally {
+                    this.conectar.fechaBanco();
+                    JOptionPane.showMessageDialog(null, "Agenda enviada com sucesso!");
+                }
             }
         }
     }
-
 }
