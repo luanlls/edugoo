@@ -51,11 +51,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
                 txtNomeMouseClicked(evt);
             }
         });
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 670, 40));
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -81,11 +76,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, -1, -1));
 
         comboEvacuacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecionar", "Não evacuou", "Evacuou Pastoso", "Evacuou Líquido", " " }));
-        comboEvacuacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboEvacuacaoActionPerformed(evt);
-            }
-        });
         jPanel1.add(comboEvacuacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -159,14 +149,6 @@ public class Tela8Agenda extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         EnviarAgenda(novaAgenda);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void comboEvacuacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEvacuacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboEvacuacaoActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeMouseClicked
         txtNome.setText("");
