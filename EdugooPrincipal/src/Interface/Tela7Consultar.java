@@ -88,7 +88,9 @@ public class Tela7Consultar extends javax.swing.JFrame {
         });
         jPanel1.add(txtCampoNomeConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 500, 50));
 
+        btnBuscar.setBackground(new java.awt.Color(255, 153, 0));
         btnBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,8 +147,9 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel16.setText("UF");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 640, -1, -1));
 
+        btnEditar.setBackground(new java.awt.Color(255, 153, 0));
         btnEditar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(255, 102, 0));
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
         btnEditar.setText("EDITAR");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +243,9 @@ public class Tela7Consultar extends javax.swing.JFrame {
         jLabel22.setText("*");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, -1, -1));
 
+        btnExcluir.setBackground(new java.awt.Color(255, 0, 0));
         btnExcluir.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 255, 255));
         btnExcluir.setText("EXCLUIR");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
