@@ -1,6 +1,8 @@
 
 package Interface;
 
+import Utils.GeradorRelatorio;
+
 
 public class TelaRelatorios extends javax.swing.JFrame {
 
@@ -19,11 +21,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbLista = new javax.swing.JComboBox<>();
         btnGerar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         btnPdf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,8 +55,9 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/EDUGOO2.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 40, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a lista desejada", "Lista de Funcionários", "Turma Berçário", "Turma Maternal 1", "Turma Maternal 2", "Turma Infantil 1", "Turma Infantil 2", " ", " ", " " }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 360, 50));
+        cbLista.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        cbLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a lista desejada", "Lista de Funcionários", "Turma Berçário", "Turma Maternal 1", "Turma Maternal 2", "Turma Infantil 1", "Turma Infantil 2", " ", " ", " " }));
+        jPanel1.add(cbLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 360, 50));
 
         btnGerar.setBackground(new java.awt.Color(255, 102, 0));
         btnGerar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -66,18 +69,23 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jLabel5.setText("Lista:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 90, 50));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Nome", "Período", "Data Nasc.", "Fase", "Categoria"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 810, 370));
 
@@ -85,6 +93,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
         btnPdf.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         btnPdf.setForeground(new java.awt.Color(255, 255, 255));
         btnPdf.setText("GERAR PDF");
+        btnPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPdfActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPdf, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 650, -1, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,6 +120,11 @@ public class TelaRelatorios extends javax.swing.JFrame {
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfActionPerformed
+        GeradorRelatorio gerador = new GeradorRelatorio();
+        gerador.Gerar(this, "Relatorio", (String)cbLista.getSelectedItem(), tabela);
+    }//GEN-LAST:event_btnPdfActionPerformed
 
     
     public static void main(String args[]) {
@@ -144,8 +162,8 @@ public class TelaRelatorios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGerar;
     private javax.swing.JButton btnPdf;
+    private javax.swing.JComboBox<String> cbLista;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -153,6 +171,6 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }
