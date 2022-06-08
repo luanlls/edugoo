@@ -283,7 +283,7 @@ public class Tela8Agenda extends javax.swing.JFrame {
                             + "'" + novaAgenda.getAgendaEvacuacao() + "',"
                             + "'" + novaAgenda.getAgendaSoneca() + "',"
                             + "'" + novaAgenda.getAgendaRecados() + "',"
-                            + "'" + novaAgenda.getAgendaAlunosId() + "',"
+                            + "'" + novaAgenda.getAgendaAlunosId() + "'"
                             + ");");
 
                 } catch (Exception e) {
