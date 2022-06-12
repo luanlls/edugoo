@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
 import Objetos.ObjUsuario;
+import java.awt.Font;
 import java.sql.Connection;
 
 public class Tela2Login extends javax.swing.JFrame {
@@ -199,7 +200,7 @@ public class Tela2Login extends javax.swing.JFrame {
     private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusGained
         if (campoUsuario.getText().equals("Usuário")) {
             campoUsuario.setText("");
-            campoUsuario.setForeground(new Color(204, 204, 204));
+            campoUsuario.setForeground(new Color(0, 0, 0));
         }
     }//GEN-LAST:event_campoUsuarioFocusGained
 
@@ -213,7 +214,7 @@ public class Tela2Login extends javax.swing.JFrame {
     private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
         if (campoSenha.getText().equals("**********")) {
             campoSenha.setText("");
-            campoSenha.setForeground(new Color(204, 204, 204));
+            campoSenha.setForeground(new Color(0, 0, 0));
         }
     }//GEN-LAST:event_campoSenhaFocusGained
 

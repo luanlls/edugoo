@@ -1,11 +1,19 @@
-
 package Interface;
 
 import Utils.GeradorRelatorio;
+import javax.swing.JOptionPane;
+import Conexoes.MySQL;
+import Objetos.ObjConsulta;
+import Utils.TableModelCreator;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 
 public class TelaRelatorios extends javax.swing.JFrame {
 
+    MySQL conectar = new MySQL();
     
     public TelaRelatorios() {
         initComponents();
@@ -56,13 +64,18 @@ public class TelaRelatorios extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 40, -1, -1));
 
         cbLista.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        cbLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a lista desejada", "Lista de Funcionários", "Turma Berçário", "Turma Maternal 1", "Turma Maternal 2", "Turma Infantil 1", "Turma Infantil 2", " ", " ", " " }));
+        cbLista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a lista desejada", "Lista de Funcionários", "Berçário", "Maternal 1", "Maternal 2", "Infantil 1", "Infantil 2", " ", " ", " " }));
         jPanel1.add(cbLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 360, 50));
 
         btnGerar.setBackground(new java.awt.Color(255, 102, 0));
         btnGerar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         btnGerar.setForeground(new java.awt.Color(255, 255, 255));
         btnGerar.setText("GERAR");
+        btnGerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGerarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 180, 120, 50));
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
@@ -126,6 +139,10 @@ public class TelaRelatorios extends javax.swing.JFrame {
         gerador.Gerar(this, "Relatorio", (String)cbLista.getSelectedItem(), tabela);
     }//GEN-LAST:event_btnPdfActionPerformed
 
+    private void btnGerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerarActionPerformed
+        atualizarTabela();
+    }//GEN-LAST:event_btnGerarActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -173,4 +190,82 @@ public class TelaRelatorios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+
+    private List<ObjConsulta> getDados(){
+        
+        List<ObjConsulta> lstConsulta = new ArrayList<ObjConsulta>();
+        
+        int relatorioTipoIndex = this.cbLista.getSelectedIndex();
+        String relatorioTipo = ((String) this.cbLista.getSelectedItem());
+        String nomeTabela;
+        String nomeCampo;
+
+        if (cbLista.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Por favor inserir Tipo do Relatorio!!");
+        } else {
+
+            if (relatorioTipoIndex >= 2) {
+                nomeTabela = "alunos";
+                nomeCampo = "aluno";
+            } else {
+                nomeTabela = "funcionarios";
+                nomeCampo = "funcionario";
+            }
+
+            try {
+                this.conectar.conectaBanco();
+
+                this.conectar.executarSQL(
+                        "SELECT "
+                        + nomeCampo + "_nome,"
+                        + nomeCampo + "_periodo,"
+                        + nomeCampo + "_datan,"
+                        + nomeCampo + "_fase,"
+                        + nomeCampo + "_categoria"
+                        + " FROM"
+                        + " " + nomeTabela
+                        + " WHERE "
+                        + nomeCampo + "_fase = '" +relatorioTipo + "'"
+                        + ";"
+                );
+
+                while (this.conectar.getResultSet().next()) {
+
+                    ObjConsulta objConsulta = new ObjConsulta();
+                    
+                    objConsulta.setConsNome(this.conectar.getResultSet().getString(1));
+                    objConsulta.setConsPeriodo(this.conectar.getResultSet().getString(2));
+                    objConsulta.setConsDataN((String) this.conectar.getResultSet().getString(3));
+                    objConsulta.setConsFase(this.conectar.getResultSet().getString(4));
+                    objConsulta.setConsCategoria(this.conectar.getResultSet().getString(5));
+                    
+                    lstConsulta.add(objConsulta);
+                }
+
+            } catch (Exception e) {
+                System.out.println("Erro ao consultar" + e.getMessage());
+
+            } finally {
+                this.conectar.fechaBanco();
+            }
+        }
+        return lstConsulta;
+    }
+    
+    private void atualizarTabela(){
+        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+        modelo.setNumRows(0);
+        
+        for (ObjConsulta objConsulta : getDados()) {
+            
+            modelo.addRow(new Object[]{
+                objConsulta.getConsNome(),
+                objConsulta.getConsPeriodo(),
+                objConsulta.getConsDataN(),
+                objConsulta.getConsFase(),
+                objConsulta.getConsCategoria()
+            });
+            
+        }
+    }
 }
