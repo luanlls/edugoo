@@ -10,6 +10,8 @@ public class Tela2Login extends javax.swing.JFrame {
 
     MySQL conectar = new MySQL();
     ObjUsuario objUsuario = new ObjUsuario();
+    
+    String CpfAtivo = "";
 
     private Connection conn;
 
@@ -361,7 +363,7 @@ public class Tela2Login extends javax.swing.JFrame {
                     dispose();
                     break;
                 case "Responsavel":
-                    Tela4MenuResponsavel telamenuResp = new Tela4MenuResponsavel();
+                    Tela4MenuResponsavel telamenuResp = new Tela4MenuResponsavel(CpfAtivo = objUsuario.getUsuarioCpf());
                     telamenuResp.setVisible(true);
                     System.out.println("Entrou no menu de Responsavel");
                     dispose();

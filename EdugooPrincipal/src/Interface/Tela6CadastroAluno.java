@@ -110,6 +110,11 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCPFResp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFRespActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtCPFResp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 200, 45));
 
         try {
@@ -292,6 +297,10 @@ public class Tela6CadastroAluno extends javax.swing.JFrame {
         tela.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelar_ClienteActionPerformed
+
+    private void txtCPFRespActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFRespActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFRespActionPerformed
 
     /**
      * @param args the command line arguments

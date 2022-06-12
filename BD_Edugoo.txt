@@ -62,8 +62,12 @@ create table agenda (
     agenda_evacuacao		varchar(30) not null,
     agenda_soneca			varchar(30) not null,
     agenda_recados			varchar(30),
+    agenda_data				date		not null default(current_date()),
     agenda_alunos_id 		int not null references alunos(alunos_id)
 );
 
 insert into usuarios values (null, 'Ana','admin1', 'admin123','123.456.789-11', 'Administrador');
 insert into usuarios values (null, 'Luan','prof1', 'prof123','987.654.321-55', 'Professor');
+insert into usuarios values (null, 'PaiTeste','pai1', 'pai123','524.534.798-90', 'Responsavel');
+
+insert into alunos (aluno_periodo, aluno_fase, aluno_nome, aluno_datan, aluno_cpf) values ("manha", "3", "Luan Lima", "2003-06-28", "524.534.798-90");

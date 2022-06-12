@@ -10,6 +10,7 @@ public class ObjAgenda {
     private String agendaEvacuacao = "";
     private String agendaSoneca = "";
     private String agendaRecados = "";
+    private String agendaData = "";
     private int agendaAlunosId = 0;
 
     public int getAgendaId() {
@@ -84,5 +85,12 @@ public class ObjAgenda {
         this.agendaAlunosId = agendaAlunosId;
     }
     
+    public String getAgendaData() {
+        return agendaData;
+    }
+
+    public void setAgendaData(String agendaData) {
+        this.agendaData = agendaData;
+    }
     
 }
