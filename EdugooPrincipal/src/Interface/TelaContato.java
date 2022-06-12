@@ -6,9 +6,17 @@ import javax.swing.JOptionPane;
 
 public class TelaContato extends javax.swing.JFrame {
 
+    String categoriaAtiva;
+    String CpfAtivo;
     
     public TelaContato() {
         initComponents();
+    }
+    
+    public TelaContato(String categoriaAtiva, String CpfAtivo) {
+        initComponents();
+        this.categoriaAtiva = categoriaAtiva;
+        this.CpfAtivo = CpfAtivo;
     }
 
    
@@ -18,7 +26,7 @@ public class TelaContato extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        JButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -51,16 +59,16 @@ public class TelaContato extends javax.swing.JFrame {
         });
         jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 67, 86, 81));
 
-        jButton3.setBackground(new java.awt.Color(0, 51, 153));
-        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Perguntas Frequentes");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        JButton3.setBackground(new java.awt.Color(0, 51, 153));
+        JButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        JButton3.setForeground(new java.awt.Color(255, 255, 255));
+        JButton3.setText("Perguntas Frequentes");
+        JButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                JButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 254, 351, 66));
+        jPanel2.add(JButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 254, 351, 66));
 
         jButton4.setBackground(new java.awt.Color(0, 51, 153));
         jButton4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
@@ -161,11 +169,35 @@ public class TelaContato extends javax.swing.JFrame {
         Tela4Menu tela = new Tela4Menu();
         tela.setVisible(true);
         dispose();
+        
+        switch(categoriaAtiva){
+            case "Administrador":
+                Tela4Menu telamenu = new Tela4Menu();
+                telamenu.setVisible(true);
+                System.out.println("Entrou no menu de Administrador");
+                dispose();
+                break;
+            case "Professor":
+                Tela4MenuProfessor telamenuProf = new Tela4MenuProfessor();
+                telamenuProf.setVisible(true);
+                System.out.println("Entrou no menu de professor");
+                dispose();
+                break;
+            case "Responsavel":
+                Tela4MenuResponsavel telamenuResp = new Tela4MenuResponsavel(CpfAtivo);
+                telamenuResp.setVisible(true);
+                System.out.println("Entrou no menu de Responsavel");
+                dispose();
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Algo deu errado: Switch, tela Login, Função Logar(ObjUsuario)");
+                break;
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    JOptionPane.showMessageDialog(null, "Obrigado pelo seu feedback!");
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void JButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton3ActionPerformed
+      JOptionPane.showMessageDialog(null, "Obrigado pelo seu feedback!");
+    }//GEN-LAST:event_JButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
     JOptionPane.showMessageDialog(null, "Obrigado pelo seu feedback!");
@@ -342,9 +374,9 @@ public class TelaContato extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JButton3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;

@@ -4,12 +4,15 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import Conexoes.MySQL;
 import Objetos.ObjUsuario;
+import java.awt.Font;
 import java.sql.Connection;
 
 public class Tela2Login extends javax.swing.JFrame {
 
     MySQL conectar = new MySQL();
     ObjUsuario objUsuario = new ObjUsuario();
+    
+    String CpfAtivo = "";
 
     private Connection conn;
 
@@ -197,7 +200,7 @@ public class Tela2Login extends javax.swing.JFrame {
     private void campoUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoUsuarioFocusGained
         if (campoUsuario.getText().equals("Usuário")) {
             campoUsuario.setText("");
-            campoUsuario.setForeground(new Color(204, 204, 204));
+            campoUsuario.setForeground(new Color(0, 0, 0));
         }
     }//GEN-LAST:event_campoUsuarioFocusGained
 
@@ -211,7 +214,7 @@ public class Tela2Login extends javax.swing.JFrame {
     private void campoSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoSenhaFocusGained
         if (campoSenha.getText().equals("**********")) {
             campoSenha.setText("");
-            campoSenha.setForeground(new Color(204, 204, 204));
+            campoSenha.setForeground(new Color(0, 0, 0));
         }
     }//GEN-LAST:event_campoSenhaFocusGained
 
@@ -361,7 +364,7 @@ public class Tela2Login extends javax.swing.JFrame {
                     dispose();
                     break;
                 case "Responsavel":
-                    Tela4MenuResponsavel telamenuResp = new Tela4MenuResponsavel();
+                    Tela4MenuResponsavel telamenuResp = new Tela4MenuResponsavel(CpfAtivo = objUsuario.getUsuarioCpf());
                     telamenuResp.setVisible(true);
                     System.out.println("Entrou no menu de Responsavel");
                     dispose();

@@ -100,11 +100,13 @@ public class GeradorRelatorio {
                 Rectangle pageSize = page.getPageSize();
                 Canvas canvas = new Canvas(new PdfCanvas(page), pageSize);
                 canvas.setFontSize(18);
-                URL urlToImage = this.getClass().getResource("/img/logo.jpg");
+                
+                URL urlToImage = this.getClass().getResource("/img/logo.png");
                 ImageData data = ImageDataFactory.create(urlToImage.getPath());
                 Image img = new Image(data);
                 img.setWidth(90);
                 canvas.add(img);
+                
                 canvas.showTextAligned(titulo,
                         pageSize.getWidth() / 2,
                         pageSize.getTop() - 60, TextAlignment.CENTER);
